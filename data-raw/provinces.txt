@@ -414,3 +414,4 @@ Tiền Giang;Soc Trang
 Lào Cai;Ca Mau
 Bình Thuận;Quang Binh
 Bà Rịa - Vũng Tàu;Ba Ria - Vung Tau
+Vung Tau - Ba Ria;Ba Ria - Vung Tau
