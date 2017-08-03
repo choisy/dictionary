@@ -1,0 +1,343 @@
+old;new
+BÄƒc Cáº¡n;Bac Kan
+BÄƒc Giang;Bac Giang
+BÄƒc Ninh;Bac Ninh
+Cao BÄƒng;Cao Bang
+Äiá»‡n BiÃªn;Dien Bien
+Háº£i DÆ°Æ¡ng;Hai Duong
+Háº£i PhÃ²ng;Hai Phong
+HÃ  Giang;Ha Giang
+HÃ  Ná»™i;Ha Noi
+HÃ  Nam;Ha Nam
+HÃ  TÄ©nh;Ha Tinh
+HoÃ  BÃ¬nh;Hoa Binh
+HÆ°ng YÃªn;Hung Yen
+Láº¡ng SÆ¡n;Lang Son
+Lai ChÃ¢u;Lai Chau
+LÃ o Cai;Lao Cai
+Nam Äá»‹nh;Nam Dinh
+Nghá»‡ An;Nghe An
+Ninh BÃ¬nh;Ninh Binh
+PhÃº Thá»;Phu Tho
+Quáº£ng Ninh;Quang Ninh
+SÆ¡n La;Son La
+ThÃ¡i BÃ¬nh;Thai Binh
+ThÃ¡i NguyÃªn;Thai Nguyen
+Thanh HoÃ¡;Thanh Hoa
+TuyÃªn Quang;Tuyen Quang
+VÄ©nh PhÃºc;Vinh Phuc
+YÃªn BÃ¡i;Yen Bai
+Thua Thien-Hue;Thua Thien - Hue
+Thua Thien Hue;Thua Thien - Hue
+TP.Ho Chi Minh;Ho Chi Minh
+Ho Chi Minh;Ho Chi Minh
+TP. Ho Chi Minh;Ho Chi Minh
+BÃ¬nh Dinh;Binh Dinh
+Bình Dinh;Binh Dinh
+Thai nguyen;Thai Nguyen
+Binh Äinh;Binh Dinh
+Äak Lak;Dak Lak
+Lam Äong;Lam Dong
+Äong Nai;Dong Nai
+An Giang;An Giang
+VT-Bà Rịa;Ba Ria - Vung Tau
+VT-Bµ RÞa;Ba Ria - Vung Tau
+Bµ RÞa -V.Tµu;Ba Ria - Vung Tau
+V.Tµu-Bµ RÞa;Ba Ria - Vung Tau
+Vung Tau;Ba Ria - Vung Tau
+Vung Tau -Ba Ria;Ba Ria - Vung Tau
+V.tau - Con Dao;Ba Ria - Vung Tau
+VT-B¡ RÙa;Ba Ria - Vung Tau
+Bµ RÞaVT;Ba Ria - Vung Tau
+Bắc Giang;Bac Giang
+B¾c Giang;Bac Giang
+Bac Giang;Bac Giang
+Bắc Kạn;Bac Kan
+B¾c K¹n;Bac Kan
+Bac Kan;Bac Kan
+B¾c C¹n;Bac Kan
+Bạc Liêu;Bac Lieu
+B¹c Liªu;Bac Lieu
+Bac Lieu;Bac Lieu
+Bắc Ninh;Bac Ninh
+B¾c Ninh;Bac Ninh
+Bac Ninh;Bac Ninh
+B¾c Th¸i;Bac Thai
+Bac Thai;Bac Thai
+B°c ThŸi;Bac Thai
+Bến Tre;Ben Tre
+BÕn Tre;Ben Tre
+Ben Tre;Ben Tre
+BÆn Tre;Ben Tre
+Bình Định;Binh Dinh
+B×nh §Þnh;Binh Dinh
+Binh Dinh;Binh Dinh
+BÖnh ‡Ùnh;Binh Dinh
+Bình Dương;Binh Duong
+B×nh D­¬ng;Binh Duong
+Binh Duong;Binh Duong
+Bình Phước;Binh Phuoc
+B×nh Ph­íc;Binh Phuoc
+Binh Phuoc;Binh Phuoc
+Bình Thuận;Binh Thuan
+B×nh ThuËn;Binh Thuan
+Binh Thuan;Binh Thuan
+BÖnh Thuºn;Binh Thuan
+Binh Tri Thien;Binh Tri Thien
+Cà Mau;Ca Mau
+Cµ Mau;Ca Mau
+Cµ  Mau;Ca Mau
+Ca Mau;Ca Mau
+Cµ mau;Ca Mau
+Cần Thơ;Can Tho
+CÇn Th¬;Can Tho
+Can Tho;Can Tho
+C·n Thç;Can Tho
+Cao Bằng;Cao Bang
+Cao B»ng;Cao Bang
+Cao Bang;Cao Bang
+Cao B±ng;Cao Bang
+Cuu Long;Cuu Long
+Đà Nẵng;Da Nang
+§µ N½ng;Da Nang
+Da Nang;Da Nang
+§¾c L¾c;Dak Lak
+‡°c L°c;Dak Lak
+Đắc Lắc;Dak Lak
+§¾k L¾k;Dak Lak
+Dak Lak;Dak Lak
+Đắc Nông;Dak Nong
+§¾k N«ng;Dak Nong
+§¾c N«ng;Dak Nong
+Dak Nong;Dak Nong
+Điện Biên;Dien Bien
+§iÖn Biªn;Dien Bien
+Dien Bien;Dien Bien
+Đồng Nai;Dong Nai
+§ång Nai;Dong Nai
+Dong Nai;Dong Nai
+‡ãng Nai;Dong Nai
+Đồng Tháp;Dong Thap
+§ång Th¸p;Dong Thap
+Dong Thap;Dong Thap
+‡ãng ThŸp;Dong Thap
+Gia Lai;Gia Lai
+Gia Lai - Kon Tum;Gia Lai - Kon Tum
+Hµ B¾c;Ha Bac
+Ha Bac;Ha Bac
+H¡ B°c;Ha Bac
+Hà Giang;Ha Giang
+Hµ Giang;Ha Giang
+Ha Giang;Ha Giang
+H¡ Giang;Ha Giang
+Hà Nam;Ha Nam
+Hµ Nam;Ha Nam
+Ha Nam;Ha Nam
+Hµ nam;Ha Nam
+Ha Nam Ninh;Ha Nam Ninh
+Hà Nội;Ha Noi
+Hµ Néi;Ha Noi
+Ha Noi;Ha Noi
+H¡ Næi;Ha Noi
+Ha Son Binh;Ha Son Binh
+Hà Tây;Ha Tay
+Hµ T©y;Ha Tay
+Ha Tay;Ha Tay
+H¡ Tµy;Ha Tay
+Hà Tĩnh;Ha Tinh
+Hµ TÜnh;Ha Tinh
+Ha Tinh;Ha Tinh
+H¡ TØnh;Ha Tinh
+Ha Tuyen;Ha Tuyen
+Hải Dương;Hai Duong
+H¶i D­¬ng;Hai Duong
+Hai Duong;Hai Duong
+H¶i H­ng;Hai Hung
+Hai Hung;Hai Hung
+H¨i Hõng;Hai Hung
+Hải Phòng;Hai Phong
+H¶i Phßng;Hai Phong
+Hai Phong;Hai Phong
+H¨i PhÝng;Hai Phong
+H¶i phßng;Hai Phong
+Hậu Giang;Hau Giang
+HËu Giang;Hau Giang
+Hau Giang;Hau Giang
+Hoà Bình;Hoa Binh
+Hoµ B×nh;Hoa Binh
+Hßa B×nh;Hoa Binh
+Hoa Binh;Hoa Binh
+HÝa BÖnh;Hoa Binh
+Hoang Lien Son;Hoang Lien Son
+Hưng Yên;Hung Yen
+H­ng Yªn;Hung Yen
+Hung Yen;Hung Yen
+H­ng yªn;Hung Yen
+Khánh Hoà;Khanh Hoa
+Kh¸nh Hoµ;Khanh Hoa
+Khanh Hoa;Khanh Hoa
+KhŸnh HÝa;Khanh Hoa
+Kiên Giang;Kien Giang
+Kiªn Giang;Kien Giang
+Kien Giang;Kien Giang
+KiÅn Giang;Kien Giang
+Kon Tum;Kon Tum
+Lai Châu;Lai Chau
+Lai Ch©u;Lai Chau
+Lai Chau;Lai Chau
+Lai Chµu;Lai Chau
+Lai ch©u;Lai Chau
+Lâm Đồng;Lam Dong
+L©m §ång;Lam Dong
+L©m §ång*;Lam Dong
+Lam Dong;Lam Dong
+Lam Dong*;Lam Dong
+Lµm ‡ãng;Lam Dong
+Lạng Sơn;Lang Son
+L¹ng S¬n;Lang Son
+Lang Son;Lang Son
+L­ng Sçn;Lang Son
+Lào Cai;Lao Cai
+Lµo Cai;Lao Cai
+Lao Cai;Lao Cai
+L¡o Cai;Lao Cai
+Long An;Long An
+Minh H¶i;Minh Hai
+Minh Hai;Minh Hai
+Minh H¨i;Minh Hai
+Nam Định;Nam Dinh
+Nam §Þnh;Nam Dinh
+Nam Dinh;Nam Dinh
+Nam Hµ;Nam Ha
+Nam Ha;Nam Ha
+Nam H¡;Nam Ha
+Nghệ An;Nghe An
+NghÖ An;Nghe An
+Nghe An;Nghe An
+NghÎ An;Nghe An
+Nghe tinh;Nghe Tinh
+Nghia Binh;Nghia Binh
+Ninh Bình;Ninh Binh
+Ninh B×nh;Ninh Binh
+Ninh Binh;Ninh Binh
+Ninh BÖnh;Ninh Binh
+Ninh Thuận;Ninh Thuan
+Ninh ThuËn;Ninh Thuan
+Ninh Thuan;Ninh Thuan
+Ninh Thuºn;Ninh Thuan
+Phu Khanh;Phu Khanh
+Phú Thọ;Phu Tho
+Phó Thä;Phu Tho
+Phu Tho;Phu Tho
+Phú Yên;Phu Yen
+Phó Yªn;Phu Yen
+Phu Yen;Phu Yen
+Phî YÅn;Phu Yen
+QN-§µ N½ng;Quang Nam - Da Nang
+Q. Nam-Da Nang;Quang Nam - Da Nang
+QN-‡¡ N³ng;Quang Nam - Da Nang
+Quảng Bình;Quang Binh
+Qu¶ng B×nh;Quang Binh
+Quang Binh;Quang Binh
+Qu¨ng BÖnh;Quang Binh
+Quảng Nam;Quang Nam
+Qu¶ng Nam;Quang Nam
+Quang Nam;Quang Nam
+Quảng Ngãi;Quang Ngai
+Qu¶ng Ng·i;Quang Ngai
+Qu·ng Ng·i;Quang Ngai
+Quang Ngai;Quang Ngai
+Qu¨ng Ng¬i;Quang Ngai
+Quảng Ninh;Quang Ninh
+Qu¶ng Ninh;Quang Ninh
+Quang Ninh;Quang Ninh
+Qu¨ng Ninh;Quang Ninh
+Quảng Trị;Quang Tri
+Qu¶ng TrÞ;Quang Tri
+Quang Tri;Quang Tri
+Qu¨ng TrÙ;Quang Tri
+Sóc Trăng;Soc Trang
+Sãc Tr¨ng;Soc Trang
+Soc Trang;Soc Trang
+SÜc Tr¯ng;Soc Trang
+Sơn La;Son La
+S¬n La;Son La
+S¬n la;Son La
+Son La;Son La
+Sçn La;Son La
+S«ng BÐ;Song Be
+Song Be;Song Be
+Sáng B¾;Song Be
+Tây Ninh;Tay Ninh
+T©y Ninh;Tay Ninh
+Tay Ninh;Tay Ninh
+Tµy Ninh;Tay Ninh
+Thái Bình;Thai Binh
+Th¸i B×nh;Thai Binh
+Thai Binh;Thai Binh
+ThŸi BÖnh;Thai Binh
+Th¸i b×nh;Thai Binh
+Thái Nguyên;Thai Nguyen
+Th¸i Nguyªn;Thai Nguyen
+Thai Nguyen;Thai Nguyen
+Thanh Hoá;Thanh Hoa
+Thanh Ho¸;Thanh Hoa
+Thanh ho¸;Thanh Hoa
+Thanh Hãa;Thanh Hoa
+Thanh Hoa;Thanh Hoa
+Thanh HÜa;Thanh Hoa
+TT-Huế;Thua Thien - Hue
+TT-HuÕ;Thua Thien - Hue
+TT - HuÕ;Thua Thien - Hue
+Thua Thien - Hue;Thua Thien - Hue
+TT-HuÆ;Thua Thien - Hue
+T.T.HuÕ;Thua Thien - Hue
+Thuan Hai;Thuan Hai
+Tiền Giang;Tien Giang
+TiÒn Giang;Tien Giang
+Tien Giang;Tien Giang
+TiËn Giang;Tien Giang
+TP.H.C.Minh;Ho Chi Minh
+TP. H.C.M;Ho Chi Minh
+TP.H.C. Minh;Ho Chi Minh
+Tp. Ho Chi Minh;Ho Chi Minh
+TP. H.C.Minh;Ho Chi Minh
+TP. HCM;Ho Chi Minh
+Trà Vinh;Tra Vinh
+Trµ Vinh;Tra Vinh
+Tra Vinh;Tra Vinh
+Tr¡ Vinh;Tra Vinh
+Tuyên Quang;Tuyen Quang
+Tuyªn Quang;Tuyen Quang
+Tuyen Quang;Tuyen Quang
+TuyÅn Quang;Tuyen Quang
+Vĩnh Long;Vinh Long
+VÜnh Long;Vinh Long
+VÜnh Long*;Vinh Long
+Vinh Long;Vinh Long
+Vinh Long*;Vinh Long
+VØnh Long;Vinh Long
+VÜnh Phó;Vinh Phu
+Vinh Phu;Vinh Phu
+VØnh Phî;Vinh Phu
+Vĩnh Phúc;Vinh Phuc
+VÜnh Phóc;Vinh Phuc
+Vinh Phuc;Vinh Phuc
+Yên Bái;Yen Bai
+Yªn B¸i;Yen Bai
+Yen Bai;Yen Bai
+YÅn BŸi;Yen Bai
+Ba Ria - Vung Tau;Ba Ria - Vung Tau
+Nam Äinh;Nam Dinh
+Äa Nang;Da Nang
+BR-VT;Ba Ria - Vung Tau
+T.Quang;Tuyen Quang
+Tp. Da Nang;Da Nang
+TPHCM*;Ho Chi Minh
+TT- Hue;Thua Thien - Hue
+Bac Can;Bac Kan
+Dac Lac;Dak Lak
+Dac Nong;Dak Nong
+Ba Ria Vung Tau;Ba Ria - Vung Tau
+Nghe Tinh;Nghe Tinh
+Quang Nam - Da Nang;Quang Nam - Da Nang
