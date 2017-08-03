@@ -341,3 +341,76 @@ Dac Nong;Dak Nong
 Ba Ria Vung Tau;Ba Ria - Vung Tau
 Nghe Tinh;Nghe Tinh
 Quang Nam - Da Nang;Quang Nam - Da Nang
+Bà Rịa-Vũng Tàu;Ba Ria - Vung Tau
+Đắk Lắk;Dak Lak
+Đắk Nông;Dak Nong
+Hồ Chí Minh;Ho Chi Minh
+Hòa Bình;Hoa Binh
+Khánh Hòa;Khanh Hoa
+Thanh Hóa;Thanh Hoa
+Thừa Thiên Huế;Thua Thien - Hue
+Hòa Bình;Ha Noi
+Quảng Bình;Hai Phong
+NA;Vinh Phuc
+Hà Nam;Bac Ninh
+Nghệ An;Hai Duong
+Quảng Nam;Hung Yen
+Sơn La;Ha Nam
+Lâm Đồng;Nam Dinh
+Kiên Giang;Thai Binh
+Ninh Thuận;Ninh Binh
+Điện Biên;Ha Giang
+Lạng Sơn;Cao Bang
+Đắk Lắk;Lao Cai
+Hải Dương;Bac Kan
+Gia Lai;Lang Son
+Cà Mau;Tuyen Quang
+NA;Yen Bai
+Cần Thơ;Thai Nguyen
+Tây Ninh;Phu Tho
+Bắc Ninh;Bac Giang
+Đồng Tháp;Quang Ninh
+Khánh Hòa;Lai Chau
+Phú Thọ;Dien Bien
+Vĩnh Long;Son La
+Hưng Yên;Bac Lieu
+Đà Nẵng;Hoa Binh
+Đắk Nông;Long An
+Hậu Giang;Thanh Hoa
+Hồ Chí Minh;Nghe An
+Thanh Hóa;Ha Tinh
+Đồng Nai;Quang Binh
+An Giang;Quang Tri
+Trà Vinh;Thua Thien - Hue
+Tuyên Quang;Da Nang
+Bà Rịa - Vũng Tàu;Quang Nam
+Long An;Quang Ngai
+Thái Bình;Binh Dinh
+Bình Dương;Phu Yen
+Quảng Ngãi;Khanh Hoa
+Phú Yên;Kon Tum
+Lai Châu;Gia Lai
+Yên Bái;Dak Lak
+Thái Nguyên;Dak Nong
+Kon Tum;Lam Dong
+Thừa Thiên Huế;Ho Chi Minh
+Bình Phước;Ninh Thuan
+Hà Giang;Binh Phuoc
+Bến Tre;Tay Ninh
+Ninh Bình;Binh Duong
+Bắc Giang;Dong Nai
+Cao Bằng;Binh Thuan
+Hải Phòng;Ba Ria - Vung Tau
+Quảng Ninh;Dong Thap
+Hà Nội;An Giang
+Sóc Trăng;Tien Giang
+NA;Vinh Long
+Nam Định;Ben Tre
+Bình Định;Kien Giang
+Bắc Kạn;Can Tho
+Quảng Trị;Hau Giang
+Bạc Liêu;Tra Vinh
+Tiền Giang;Soc Trang
+Lào Cai;Ca Mau
+Bình Thuận;Quang Binh
+Bà Rịa - Vũng Tàu;Ba Ria - Vung Tau
