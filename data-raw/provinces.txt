@@ -349,69 +349,70 @@ Hòa Bình;Hoa Binh
 Khánh Hòa;Khanh Hoa
 Thanh Hóa;Thanh Hoa
 Thừa Thiên Huế;Thua Thien - Hue
-Hòa Bình;Ha Noi
-Quảng Bình;Hai Phong
-NA;Vinh Phuc
-Hà Nam;Bac Ninh
-Nghệ An;Hai Duong
-Quảng Nam;Hung Yen
-Sơn La;Ha Nam
-Lâm Đồng;Nam Dinh
-Kiên Giang;Thai Binh
-Ninh Thuận;Ninh Binh
-Điện Biên;Ha Giang
-Lạng Sơn;Cao Bang
-Đắk Lắk;Lao Cai
-Hải Dương;Bac Kan
-Gia Lai;Lang Son
-Cà Mau;Tuyen Quang
-NA;Yen Bai
-Cần Thơ;Thai Nguyen
-Tây Ninh;Phu Tho
-Bắc Ninh;Bac Giang
-Đồng Tháp;Quang Ninh
-Khánh Hòa;Lai Chau
-Phú Thọ;Dien Bien
-Vĩnh Long;Son La
-Hưng Yên;Bac Lieu
-Đà Nẵng;Hoa Binh
-Đắk Nông;Long An
-Hậu Giang;Thanh Hoa
-Hồ Chí Minh;Nghe An
-Thanh Hóa;Ha Tinh
-Đồng Nai;Quang Binh
-An Giang;Quang Tri
-Trà Vinh;Thua Thien - Hue
-Tuyên Quang;Da Nang
-Bà Rịa - Vũng Tàu;Quang Nam
-Long An;Quang Ngai
-Thái Bình;Binh Dinh
-Bình Dương;Phu Yen
-Quảng Ngãi;Khanh Hoa
-Phú Yên;Kon Tum
-Lai Châu;Gia Lai
-Yên Bái;Dak Lak
-Thái Nguyên;Dak Nong
-Kon Tum;Lam Dong
-Thừa Thiên Huế;Ho Chi Minh
-Bình Phước;Ninh Thuan
-Hà Giang;Binh Phuoc
-Bến Tre;Tay Ninh
-Ninh Bình;Binh Duong
-Bắc Giang;Dong Nai
-Cao Bằng;Binh Thuan
-Hải Phòng;Ba Ria - Vung Tau
-Quảng Ninh;Dong Thap
-Hà Nội;An Giang
-Sóc Trăng;Tien Giang
-NA;Vinh Long
-Nam Định;Ben Tre
-Bình Định;Kien Giang
-Bắc Kạn;Can Tho
-Quảng Trị;Hau Giang
-Bạc Liêu;Tra Vinh
-Tiền Giang;Soc Trang
-Lào Cai;Ca Mau
-Bình Thuận;Quang Binh
+Hòa Bình;Hoa Binh
+Quảng Bình;Quang Binh
+Hà Nam;Ha Nam
+Nghệ An;Nghe An
+Quảng Nam;Quang Nam
+Sơn La;Son La
+Lâm Đồng;Lam Dong
+Kiên Giang;Kien Giang
+Ninh Thuận;Ninh Thuan
+Điện Biên;Dien Bien
+Lạng Sơn;Lang Son
+Đắk Lắk;Dak Lak
+Hải Dương;Hai Duong
+Gia Lai;Gia Lai
+Cà Mau;Ca Mau
+Cần Thơ;Can Tho
+Bắc Ninh;Bac Ninh
+Đồng Tháp;Dong Thap
+Khánh Hòa;Khanh Hoa
+Phú Thọ;Phu Tho
+Vĩnh Long;Vinh Long
+Hưng Yên;Hung Yen
+Đà Nẵng;Da Nang
+Đắk Nông;Dak Nong
+Hậu Giang;Hau Giang
+Hồ Chí Minh;Ho Chi Minh
+Thanh Hóa;Thanh Hoa
+Đồng Nai;Dong Nai
+An Giang;An Giang
+Trà Vinh;Tra Vinh
+Tuyên Quang;Tuyen Quang
+Bà Rịa - Vũng Tàu;Ba Ria - Vung Tau
+Long An;Long An
+Thái Bình;Thai Binh
+Bình Dương;Binh Duong
+Quảng Ngãi;Quang Ngai
+Phú Yên;Phu Yen
+Lai Châu;Lai Chau
+Yên Bái;Yen Bai
+Thái Nguyên;Thai Nguyen
+Kon Tum;Kon Tum
+Thừa Thiên Huế;Thua Thien - Hue
+Bình Phước;Binh Phuoc
+Hà Giang;Ha Giang
+Bến Tre;Ben Tre
+Ninh Bình;Ninh Binh
+Bắc Giang;Bac Giang
+Cao Bằng;Cao Bang
+Hải Phòng;Hai Phong
+Quảng Ninh;Quang Ninh
+Hà Nội;Ha Noi
+Sóc Trăng;Soc Trang
+Nam Định;Nam Dinh
+Bình Định;Binh Dinh
+Bắc Kạn;Bac Kan
+Quảng Trị;Quang Tri
+Bạc Liêu;Bac Lieu
+Tiền Giang;Tien Giang
+Lào Cai;Lao Cai
+Bình Thuận;Binh Thuan
 Bà Rịa - Vũng Tàu;Ba Ria - Vung Tau
 Vung Tau - Ba Ria;Ba Ria - Vung Tau
+Đăk Nông;Dak Nong
+Hồ Chí Minh city;Ho Chi Minh
+Thừa Thiên - Huế;Thua Thien - Hue
+
+
