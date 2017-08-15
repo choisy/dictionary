@@ -414,5 +414,7 @@ Vung Tau - Ba Ria;Ba Ria - Vung Tau
 Đăk Nông;Dak Nong
 Hồ Chí Minh city;Ho Chi Minh
 Thừa Thiên - Huế;Thua Thien - Hue
+Ho Chi Minh City;Ho Chi Minh
+KonTum;Kon Tum
 
 
