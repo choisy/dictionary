@@ -7,7 +7,11 @@ Maintainer: Marc Choisy <marc.choisy@ird.fr>
 Description: This package contains a dictionary for Vietnamese provinces names,
   districts names and communes names, useful to ensure consistency between 
   different data packages using vietnamese provinces, districts and/or communes.
-License: MIT
-Encoding: UTF-8
+License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
+Depends:
+    R (>= 2.10)
+VignetteBuilder: knitr
+Suggests:
+    knitr
