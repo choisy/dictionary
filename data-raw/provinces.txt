@@ -416,5 +416,6 @@ Hồ Chí Minh city;Ho Chi Minh
 Thừa Thiên - Huế;Thua Thien - Hue
 Ho Chi Minh City;Ho Chi Minh
 KonTum;Kon Tum
+Ho Chi Minh city;Ho Chi Minh
 
 
