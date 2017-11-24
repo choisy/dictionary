@@ -417,5 +417,7 @@ Thừa Thiên - Huế;Thua Thien - Hue
 Ho Chi Minh City;Ho Chi Minh
 KonTum;Kon Tum
 Ho Chi Minh city;Ho Chi Minh
-
+Bac Ka;Bac Kan
+Ba Ria-Vung Tau;Ba Ria - Vung Tau
+TP Ho Chi Minh;Ho Chi Minh
 
