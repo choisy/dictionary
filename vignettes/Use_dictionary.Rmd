@@ -88,7 +88,7 @@ province_transl
 
 ## List of province per year
 
-It"s a `list` object : 
+It's a `list` object : 
 
 ```{r}
 str(province_year)
