@@ -14,4 +14,5 @@ Depends:
     R (>= 2.10)
 VignetteBuilder: knitr
 Suggests:
-    knitr
+    knitr,
+    stringi
