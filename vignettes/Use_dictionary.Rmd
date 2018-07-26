@@ -47,10 +47,16 @@ We create a vector containing some communes names in Vietnamese:
 communes_vn <- c("Xã Nghĩa Lợi", "Xã Nam Mẫu", "Xã Xuân Vinh", "Thị trấn Thứ Ba", "Xã Hải Dương", "Xã Vĩnh Lộc A", "Xã Nội Hoàng", "Xã Điện Trung", "Xã Hoàng Đồng", "Xã Nàn Sán")
 ```
 
-We can use the `character vector` `communes` to translate the Vietnamese vector:
+We can use the `character vector` `communes` to translate the Vietnamese vector but first the vector should be encode in UNICODE to avoid encoding trouble. For that, we use the `stringi` package:
 
 ```{r}
-commune_transl <- communes[communes_vn]
+uni_communes_vn <- stringi::stri_escape_unicode(communes_vn)
+```
+
+And now, we can use the vector `communes`
+
+```{r}
+commune_transl <- communes[uni_communes_vn]
 ```
 
 We obtain a `character vector`, with the original names as `name` and the translation as `value`:   
@@ -70,11 +76,16 @@ districts_vn <- c("Huyện Tây Hòa", "Huyện Kim Thành", "Quận Liên Chi�
 provinces_vn <- c("Ninh Bình", "Hà Nội", "An Giang", "Bình Phước", "Lào Cai", "Phú Thọ", "Bắc Giang", "Vĩnh Phúc", "Bạc Liêu", "Hà Giang")
 ```
 
-But, we use the `character vector` `districts` and `provinces` contains in the package to translate the two vectors: 
+But, we use the `character vector` `districts` and `provinces` contains in the package to translate the two vectors after changing the encoding to UNICODE:
 
 ```{r}
-district_transl <- districts[districts_vn]
-province_transl <- provinces[provinces_vn]
+uni_districts_vn <- stringi::stri_escape_unicode(districts_vn)
+uni_provinces_vn <- stringi::stri_escape_unicode(provinces_vn)
+```
+
+```{r}
+district_transl <- districts[uni_districts_vn]
+province_transl <- provinces[uni_provinces_vn]
 ```
 
 We obtain two `character vectors`, with the original names as `name` and the translation as `value`:
