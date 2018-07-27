@@ -25,7 +25,7 @@
 #'
 #' @usage data(provinces)
 #'
-#' @format An object of class \code{character} of length 418.
+#' @format An object of class \code{character} of length 429.
 "provinces"
 
 #' Provinces By Year
