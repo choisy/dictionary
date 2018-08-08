@@ -4,7 +4,7 @@
 \name{communes}
 \alias{communes}
 \title{Communes dictionary}
-\format{An object of class \code{character} of length 80606.}
+\format{An object of class \code{character} of length 80621.}
 \usage{
 data(communes)
 }
