@@ -80605,3 +80605,24 @@ NA;NA
 "an thach nhat";"An Thanh Nam"
 "an thu";"An Phu"
 "phuong son ky";"Son Ky"
+"Lai Châu";"Lai Chau"
+"Sơn La";"Son La"
+"Tuyên Quang";"Tuyen Quang"
+"Hà Nội";"Hanoi"
+"Bãi  Cháy";"Bai Chay"
+"Nam Định";"Nam Dinh"
+"Vinh";"Vinh"
+"Huế";"Hue"
+"Đà Nẵng";"Da Nang"
+"Qui Nhơn";"Quy Nhon"
+"Pleiku";"Pleiku"
+"Đà Lạt";"Da Lat"
+"Nha Trang";"Nha Trang"
+"Vũng Tàu";"Vung Tau"
+"Cà Mau";"Ca Mau"
+
+
+
+
+
+
