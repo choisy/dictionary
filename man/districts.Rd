@@ -4,7 +4,7 @@
 \name{districts}
 \alias{districts}
 \title{Districts dictionary}
-\format{An object of class \code{character} of length 3405.}
+\format{An object of class \code{character} of length 3406.}
 \usage{
 data(districts)
 }

@@ -15,7 +15,7 @@
 #'
 #' @usage data(districts)
 #'
-#' @format An object of class \code{character} of length 3405.
+#' @format An object of class \code{character} of length 3406.
 "districts"
 
 #' Provinces dictionary

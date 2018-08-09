@@ -3404,3 +3404,4 @@ NA;NA
 "Chiêm Hoá";"Chiem Hoa"
 "Nà Hang";"Na Hang"
 "Mù Căng Trai";"Mu Cang Chai"
+"Yen Hung";"Yen Hung"
