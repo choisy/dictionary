@@ -1,34 +1,69 @@
-#' Communes dictionary
+#' Vietnamese Communes dictionary
 #'
 #' A names charactor vector containing the translation from Vietnamese to
 #' English of the communes names in Vietnamese.
+#' The dictionary is encoded in UNICODE
 #'
 #' @usage data(communes)
 #'
 #' @format An object of class \code{character} of length 80621.
 "communes"
 
-#' Districts dictionary
+#' Vietnamese Districts dictionary
 #'
 #' A names charactor vector containing the translation from Vietnamese to
 #' English of the districts names in Vietnamese.
+#' The dictionary is encoded in UNICODE
 #'
 #' @usage data(districts)
 #'
 #' @format An object of class \code{character} of length 3406.
 "districts"
 
-#' Provinces dictionary
+#' Vietnamese Provinces dictionary
 #'
-#' A names charactor vector containing the translation from Vietnamese to
-#' English of the provinces names in Vietnamese.
+#' A named character vector containing the translation in English of the
+#' provinces names in Vietnam.
+#' The dictionary is encoded in UNICODE
 #'
-#' @usage data(provinces)
+#' @usage data(vn_province)
 #'
-#' @format An object of class \code{character} of length 429.
-"provinces"
+#' @format An object of class \code{character} of length 5013.
+"vn_province"
 
-#' Provinces By Year
+#' Lao Provinces dictionary
+#'
+#' A named character vector containing the translation in English of the
+#' provinces names in Laos.
+#' The dictionary is encoded in UNICODE
+#'
+#' @usage data(la_province)
+#'
+#' @format An object of class \code{character} of length 1195.
+"la_province"
+
+#' Cambodian Provinces dictionary
+#'
+#'A named character vector containing the translation in English of the
+#' provinces names in Cambodia.
+#' The dictionary is encoded in UNICODE
+#'
+#' @usage data(kh_province)
+#'
+#' @format An object of class \code{character} of length 3687.
+"kh_province"
+
+#' Thai Provinces dictionary
+#'
+#'A named character vector containing the translation in English of the
+#' provinces names in Thailand.
+#'
+#' @usage data(th_province)
+#'
+#' @format An object of class \code{character} of length 3029.
+"th_province"
+
+#' Vietnamese Provinces By Year
 #'
 #' A list of charactor vector containing the English names of the provinces
 #' names in Vietnamese ordered by year.

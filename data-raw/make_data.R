@@ -1,24 +1,21 @@
-# Dictionary of the names of the provinces -------------------------------------
+# Dictionary of the names of the districts in Vietnam --------------------------
 
-provinces <- read.table("data-raw/provinces.txt", sep = ";",
-                        header = TRUE, stringsAsFactors = FALSE)
-provinces$old <- stringi::stri_escape_unicode(provinces$old)
-provinces <- with(provinces, setNames(new, old))
-
-# Dictionary of the names of the provinces -------------------------------------
-
-districts <- read.table("data-raw/districts.txt", sep = ";",
+districts <- read.table("data-raw/vietnam/districts.txt", sep = ";",
                         header = TRUE, stringsAsFactors = FALSE)
 districts$old <- stringi::stri_escape_unicode(districts$old)
 districts <- with(districts, setNames(new, old))
 
-# Dictionary of the names of the provinces -------------------------------------
+# Dictionary of the names of the communes in Vietnam ---------------------------
 
-communes <- read.table("data-raw/communes.txt", sep = ";",
+communes <- read.table("data-raw/vietnam/communes.txt", sep = ";",
                        header = TRUE, stringsAsFactors = FALSE)
 communes$old <- stringi::stri_escape_unicode(communes$old)
 communes <- with(communes, setNames(new, old))
 
 # Writing to disk --------------------------------------------------------------
 
-devtools::use_data(provinces, districts, communes, overwrite = TRUE)
+devtools::use_data(districts, communes, overwrite = TRUE)
+
+# Remove everything ------------------------------------------------------------
+
+rm(list = ls())
