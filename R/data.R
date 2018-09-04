@@ -73,7 +73,7 @@
 #' since 2008. This list contains for each of change, the name of the "new"
 #' provinces in English.
 #'
-#' @usage data(province_year)
+#' @usage data(vn_province_year)
 #'
 #' @format An object of class \\code{list} of length 7.
 #'  \itemize{
@@ -88,9 +88,9 @@
 #'
 #' @examples
 #' # To have the year of each events of splitting/merging:
-#' names(province_year)
+#' names(vn_province_year)
 #'
 #' # To have the names of the province, between 1992 and 1997:
-#' province_year$`1992`
+#' vn_province_year$`1992`
 #'
 "vn_province_year"
