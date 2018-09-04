@@ -27,8 +27,8 @@ Thanh HoÃ¡;Thanh Hoa
 TuyÃªn Quang;Tuyen Quang
 VÄ©nh PhÃºc;Vinh Phuc
 YÃªn BÃ¡i;Yen Bai
-Thua Thien-Hue;Thua Thien - Hue
-Thua Thien Hue;Thua Thien - Hue
+Thua Thien-Hue;Thua Thien Hue
+Thua Thien Hue;Thua Thien Hue
 TP.Ho Chi Minh;Ho Chi Minh
 Ho Chi Minh;Ho Chi Minh
 TP. Ho Chi Minh;Ho Chi Minh
@@ -286,12 +286,12 @@ Thanh ho¸;Thanh Hoa
 Thanh Hãa;Thanh Hoa
 Thanh Hoa;Thanh Hoa
 Thanh HÜa;Thanh Hoa
-TT-Huế;Thua Thien - Hue
-TT-HuÕ;Thua Thien - Hue
-TT - HuÕ;Thua Thien - Hue
-Thua Thien - Hue;Thua Thien - Hue
-TT-HuÆ;Thua Thien - Hue
-T.T.HuÕ;Thua Thien - Hue
+TT-Huế;Thua Thien Hue
+TT-HuÕ;Thua Thien Hue
+TT - HuÕ;Thua Thien Hue
+Thua Thien - Hue;Thua Thien Hue
+TT-HuÆ;Thua Thien Hue
+T.T.HuÕ;Thua Thien Hue
 Thuan Hai;Thuan Hai
 Tiền Giang;Tien Giang
 TiÒn Giang;Tien Giang
@@ -334,7 +334,7 @@ BR-VT;Ba Ria - Vung Tau
 T.Quang;Tuyen Quang
 Tp. Da Nang;Da Nang
 TPHCM*;Ho Chi Minh
-TT- Hue;Thua Thien - Hue
+TT- Hue;Thua Thien Hue
 Bac Can;Bac Kan
 Dac Lac;Dak Lak
 Dac Nong;Dak Nong
@@ -348,7 +348,7 @@ Hồ Chí Minh;Ho Chi Minh
 Hòa Bình;Hoa Binh
 Khánh Hòa;Khanh Hoa
 Thanh Hóa;Thanh Hoa
-Thừa Thiên Huế;Thua Thien - Hue
+Thừa Thiên Huế;Thua Thien Hue
 Hòa Bình;Hoa Binh
 Quảng Bình;Quang Binh
 Hà Nam;Ha Nam
@@ -390,7 +390,7 @@ Lai Châu;Lai Chau
 Yên Bái;Yen Bai
 Thái Nguyên;Thai Nguyen
 Kon Tum;Kon Tum
-Thừa Thiên Huế;Thua Thien - Hue
+Thừa Thiên Huế;Thua Thien Hue
 Bình Phước;Binh Phuoc
 Hà Giang;Ha Giang
 Bến Tre;Ben Tre
@@ -413,7 +413,7 @@ Bà Rịa - Vũng Tàu;Ba Ria - Vung Tau
 Vung Tau - Ba Ria;Ba Ria - Vung Tau
 Đăk Nông;Dak Nong
 Hồ Chí Minh city;Ho Chi Minh
-Thừa Thiên - Huế;Thua Thien - Hue
+Thừa Thiên - Huế;Thua Thien Hue
 Ho Chi Minh City;Ho Chi Minh
 KonTum;Kon Tum
 Ho Chi Minh city;Ho Chi Minh
