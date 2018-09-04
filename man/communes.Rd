@@ -3,7 +3,7 @@
 \docType{data}
 \name{communes}
 \alias{communes}
-\title{Communes dictionary}
+\title{Vietnamese Communes dictionary}
 \format{An object of class \code{character} of length 80621.}
 \usage{
 data(communes)
@@ -11,5 +11,6 @@ data(communes)
 \description{
 A names charactor vector containing the translation from Vietnamese to
 English of the communes names in Vietnamese.
+The dictionary is encoded in UNICODE
 }
 \keyword{datasets}

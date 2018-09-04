@@ -3,7 +3,7 @@
 \docType{data}
 \name{province_year}
 \alias{province_year}
-\title{Provinces By Year}
+\title{Vietnamese Provinces By Year}
 \format{An object of class \\code{list} of length 7.
  \itemize{
    \item \code{1979}: character vector of the 40 provinces in English
