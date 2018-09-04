@@ -102,12 +102,12 @@ province_transl
 It's a `list` object : 
 
 ```{r}
-str(province_year)
+str(vn_province_year)
 ```
 
 To see a particular year (for example 1997) :
 
 ```{r}
-province_year$`1997`
+vn_province_year$`1997`
 ```
 
