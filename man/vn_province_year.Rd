@@ -15,7 +15,7 @@
    \item \code{2008}: character vector of the 63 provinces in English
 }}
 \usage{
-data(province_year)
+data(vn_province_year)
 }
 \description{
 A list of charactor vector containing the English names of the provinces
@@ -29,10 +29,10 @@ provinces in English.
 }
 \examples{
 # To have the year of each events of splitting/merging:
-names(province_year)
+names(vn_province_year)
 
 # To have the names of the province, between 1992 and 1997:
-province_year$`1992`
+vn_province_year$`1992`
 
 }
 \keyword{datasets}
