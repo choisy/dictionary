@@ -3,13 +3,14 @@
 \docType{data}
 \name{districts}
 \alias{districts}
-\title{Districts dictionary}
-\format{An object of class \code{character} of length 3405.}
+\title{Vietnamese Districts dictionary}
+\format{An object of class \code{character} of length 3406.}
 \usage{
 data(districts)
 }
 \description{
 A names charactor vector containing the translation from Vietnamese to
 English of the districts names in Vietnamese.
+The dictionary is encoded in UNICODE
 }
 \keyword{datasets}

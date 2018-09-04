@@ -20,8 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-This package contains a dictionary for Vietnamese provinces names, districts names and communes names, useful to ensure consistency between different data packages using Vietnamese provinces, districts and/or communes.
-The package also contains the list names of the provinces ordered by year. One specificity of Vietnam is the splits of administrative provinces during its history, starting from 40 provinces in 1980 and ending with 63 provinces since 2008. This list contains for each of change, the name of the "new" provinces in English.
+This package contains a dictionary for Vietnamese provinces names, districts names and communes names, useful to ensure consistency between different data packages using Vietnamese provinces, districts and/or communes. It also contains dictionaries for the Camdodian, Lao and Thai provinces names.
+The package also contains the list names of the provinces of Vietnam ordered by year. One specificity of Vietnam is the splits of administrative provinces during its history, starting from 40 provinces in 1980 and ending with 63 provinces since 2008. This list contains for each of change, the name of the "new" provinces in English.
 
 ```{r eval=F}
 devtools::install_github("choisy/dictionary")
@@ -85,7 +85,7 @@ uni_provinces_vn <- stringi::stri_escape_unicode(provinces_vn)
 
 ```{r}
 district_transl <- districts[uni_districts_vn]
-province_transl <- provinces[uni_provinces_vn]
+province_transl <- vn_province[uni_provinces_vn]
 ```
 
 We obtain two `character vectors`, with the original names as `name` and the translation as `value`:
