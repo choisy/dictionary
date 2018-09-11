@@ -145,7 +145,8 @@ create_dictionary <- function(df, names_transl, names_var,
 
   if (is.null(hash) == FALSE) dictionary <- c(hash, dictionary)
 
-  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)]
+  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)] %>%
+    .[!is.na(.)]
 
 }
 
@@ -182,7 +183,8 @@ add_dictionary <- function(transl, origin = NULL, hash) {
   }
 
   dictionary <- c(hash, dictionary)
-  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)]
+  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)] %>%
+    .[!is.na(.)]
 }
 
 
@@ -203,7 +205,22 @@ la_province <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
              "Xaisomboun", "Xaisomboun"),
     origin = c("champasack", "houaphanh", "khammuane", "phongsay",
                "xiengkuang", "special zone", "specialzone",
-               "xaysomboun special region", "xaysombounspecialregion"), .)
+               "xaysomboun special region", "xaysombounspecialregion"), .) %>%
+  create_dictionary(df = read.csv(
+    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
+      filter(CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"),
+    names_transl = "Admin1Name_Preferred",
+    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
+    hash = .)
+
+
+la_district <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds") %>%
+  create_dictionary(names_transl = "NAME_2",
+                    names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
+                    sep = "\\|") %>%
+  add_dictionary(
+    transl = c("Longsane", "Thathom"),
+    origin = c("Longsan", "Thathon"), .)
 
 # FOR THAILAND -----------------------------------------------------------------
 
@@ -215,7 +232,16 @@ th_province <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds") %>%
                     names_transl = "asciiname",
                     names_var = c("name", "asciiname", "alternatenames"),
                     sep = ",",
-                    hash = .)
+                    hash = .) %>%
+  add_dictionary(transl = c("Prathum Thani", "Phra Nakhon", "Thon Buri"),
+                 hash = .)  %>%
+  create_dictionary(df = read.csv(
+    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
+      filter(CountryName == "THAILAND"),
+    names_transl = "Admin1Name_Preferred",
+    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
+    hash = .)
+
 
 # FOR CAMBODIA -----------------------------------------------------------------
 
@@ -241,7 +267,13 @@ kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
                "k.preahsihaknouk", "kg.chhnang", "o.meanchey",
                "oddor meanchey", "kompong chhnang", "krong kep",
                "oddar mean chey", "paillin", "phom penh", "siam reap",
-               "steung treng"), .)
+               "steung treng"), .) %>%
+  create_dictionary(df = read.csv(
+    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
+      filter(CountryName == "CAMBODIA"),
+    names_transl = "Admin1Name_Preferred",
+    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
+    hash = .)
 
 # FOR VIETNAM ------------------------------------------------------------------
 
@@ -262,7 +294,7 @@ vn_province <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
                   "Ha Bac", "Ha Nam Ninh", "Ha Son Binh", "Ha Tuyen",
                   "Hai Hung", "Hoang Lien Son", "Minh Hai", "Nghe Tinh",
                   "Nghia Binh", "Phu Khanh", "Quang Nam - Da Nang", "Song Be",
-                  "Thuan Hai", "Vinh Phu", "Ha Tay", "Nam Ha"),
+                  "Thuan Hai", "Vinh Phu", "Ha Tay", "Nam Ha", "Dack Lak"),
                hash = .) %>%
   create_dictionary(df = read.table("data-raw/vietnam/provinces.txt",
                                     sep = ";", header = TRUE,
@@ -274,12 +306,30 @@ vn_province <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
     transl = c("Quang Nam - Da Nang", "Thua Thien Hue", "Ho Chi Minh",
              "Ba Ria - Vung Tau"),
     origin = c("Q. NAM-DA NANG", "THUA THIEN - HUE", "TP. HO CHI MINH",
-               "VUNG TAU - BA RIA"), .)
+               "VUNG TAU - BA RIA"), .) %>%
+  create_dictionary(df = read.csv(
+    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
+      filter(CountryName == "VIET NAM"),
+    names_transl = "Admin1Name_Preferred",
+    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
+    hash = .)
+
+vn_district <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds") %>%
+  create_dictionary(names_transl = "NAME_2",
+                    names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
+                    sep = "\\|") %>%
+  create_dictionary(df = read.table("data-raw/vietnam/districts.txt",
+                                    sep = ";", header = TRUE,
+                                    stringsAsFactors = FALSE),
+                    names_transl = "new",
+                    names_var = "old",
+                    hash = .)
 
 # Writing to disk --------------------------------------------------------------
 
 devtools::use_data(kh_province, la_province, th_province,
-                   vn_province, overwrite = TRUE)
+                   vn_province, vn_district, la_district,
+                   overwrite = TRUE)
 
 # Remove everything ------------------------------------------------------------
 
