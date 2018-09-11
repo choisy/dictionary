@@ -15,10 +15,21 @@
 #' English of the districts names in Vietnamese.
 #' The dictionary is encoded in UNICODE
 #'
-#' @usage data(districts)
+#' @usage data(vn_district)
 #'
-#' @format An object of class \code{character} of length 3406.
-"districts"
+#' @format An object of class \code{character} of length 21158.
+"vn_district"
+
+#' Lao Districts dictionary
+#'
+#' A names charactor vector containing the translation from Lao to
+#' English of the districts names in Vietnamese.
+#' The dictionary is encoded in UNICODE
+#'
+#' @usage data(la_district)
+#'
+#' @format An object of class \code{character} of length 1626.
+"la_district"
 
 #' Vietnamese Provinces dictionary
 #'
@@ -28,7 +39,7 @@
 #'
 #' @usage data(vn_province)
 #'
-#' @format An object of class \code{character} of length 5013.
+#' @format An object of class \code{character} of length 5212.
 "vn_province"
 
 #' Lao Provinces dictionary
@@ -39,7 +50,7 @@
 #'
 #' @usage data(la_province)
 #'
-#' @format An object of class \code{character} of length 1195.
+#' @format An object of class \code{character} of length 1249.
 "la_province"
 
 #' Cambodian Provinces dictionary
@@ -50,7 +61,7 @@
 #'
 #' @usage data(kh_province)
 #'
-#' @format An object of class \code{character} of length 3687.
+#' @format An object of class \code{character} of length 3784.
 "kh_province"
 
 #' Thai Provinces dictionary
@@ -60,7 +71,7 @@
 #'
 #' @usage data(th_province)
 #'
-#' @format An object of class \code{character} of length 3029.
+#' @format An object of class \code{character} of length 3275.
 "th_province"
 
 #' Vietnamese Provinces By Year
@@ -94,3 +105,71 @@
 #' vn_province_year$`1992`
 #'
 "vn_province_year"
+
+#' Vietnamese Provinces Boundaries History (since 1979)
+#'
+#' List of 24 lists containing 4 elements:
+#'  \itemize{
+#'    \item \code{year}: date of event in character in format "YYYY-mm-dd"
+#'    \item \code{event}: character vector of one object either split, merge or
+#'    rename
+#'    \item \code{before}: list of name of the province(s) before the event
+#'    \item \code{after}: list of name of the province(s) after the event
+#' }
+#'
+#' @usage data(vn_history)
+#'
+#' @format An object of class \code{list} of length 24.
+"vn_history"
+
+#' Thai Provinces Boundaries History (since 1972)
+#'
+#' List of 9 lists containing 4 elements:
+#'  \itemize{
+#'    \item \code{year}: date of event in character in format "YYYY-mm-dd"
+#'    \item \code{event}: character vector of one object either split, merge or
+#'    rename
+#'    \item \code{before}: list of name of the province(s) before the event
+#'    \item \code{after}: list of name of the province(s) after the event
+#' }
+#'
+#' @usage data(th_history)
+#'
+#' @format An object of class \code{list} of length 9.
+"th_history"
+
+#' Lao Provinces Boundaries History (since 1995)
+#'
+#' List of 2 lists containing 6 elements:
+#'  \itemize{
+#'    \item \code{year}: date of event in character in format "YYYY-mm-dd"
+#'    \item \code{event}: character vector of one object either split, merge,
+#'    complexe split, complexe merge or rename
+#'    \item \code{before}: list of name of the province(s) before the event
+#'    \item \code{after}: list of name of the province(s) after the event
+#'    \item \code{d.before}: details of the previous districts in the province
+#'    associated concerned by the complexe event
+#'    \item \code{a.before}: details of the districts in the province
+#'    associated concerned after the complexe event
+#' }
+#'
+#' @usage data(la_history)
+#'
+#' @format An object of class \code{list} of length 2.
+"la_history"
+
+#' Cambodia Provinces Boundaries History (since 1996)
+#'
+#' List of 2 lists containing 4 elements:
+#'  \itemize{
+#'    \item \code{year}: date of event in character in format "YYYY-mm-dd"
+#'    \item \code{event}: character vector of one object either split, merge or
+#'    rename
+#'    \item \code{before}: list of name of the province(s) before the event
+#'    \item \code{after}: list of name of the province(s) after the event
+#' }
+#'
+#' @usage data(kh_history)
+#'
+#' @format An object of class \code{list} of length 9.
+"kh_history"
