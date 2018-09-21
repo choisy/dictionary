@@ -26,7 +26,7 @@ library(stringr)  # for "str_extract" and "str_detect"
 # Function to recognize if a vector contains digit, returns TRUE for each object
 # of the vector containing no numerics.
 is_notnumeric <- function(vect) {
-  grepl("[[:digit:]]", vect , ignore.case = TRUE) == FALSE
+  grepl("[[:digit:]]", vect, ignore.case = TRUE) == FALSE
 }
 
 

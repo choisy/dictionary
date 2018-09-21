@@ -1,8 +1,6 @@
 # Packages and System ----------------------------------------------------------
 library(magrittr) # for " %>% ", " %<>% "
-#library(dplyr)    # for "select" and "mutate"
 library(purrr)    # for "map"
-#library(stringr)  # for "str_extract" and "str_detect"
 
 # Prerequisite -----------------------------------------------------------------
 
@@ -41,16 +39,16 @@ old_vect <- function(vect, history_lst, from, to) {
     for (i in seq_along(event_lst)) {
       # select one event
       event <- event_lst[[i]]
-      if(grepl("complexe merge", event$event)){
+      if (grepl("complexe merge", event$event)) {
         vect <- vect %>% c(., event$before, event$after) %>% unlist %>% unique
       } else {
-        vect <- vect %>% grep(paste0(event$after, collapse = "|"),
-                              ., value = TRUE, invert = TRUE) %>%
-          c(. , event$before) %>% unlist %>% unique
+        vect <- vect %>% grep(paste0(event$after, collapse = "|"), .,
+                              value = TRUE, invert = TRUE) %>%
+          c(., event$before) %>% unlist %>% unique
       }
     }
     vect %<>% sort
-  } else{
+  } else {
     vect %>% as.character %>% unique %>% sort
   }
   vect
@@ -106,4 +104,3 @@ devtools::use_data(la_province_year, kh_province_year,
 # Remove everything ------------------------------------------------------------
 
 rm(list = ls())
-
