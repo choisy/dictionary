@@ -50,7 +50,7 @@
 #'
 #' @usage data(la_province)
 #'
-#' @format An object of class \code{character} of length 1249.
+#' @format An object of class \code{character} of length 1346.
 "la_province"
 
 #' Cambodian Provinces dictionary
@@ -61,7 +61,7 @@
 #'
 #' @usage data(kh_province)
 #'
-#' @format An object of class \code{character} of length 3784.
+#' @format An object of class \code{character} of length 3791.
 "kh_province"
 
 #' Thai Provinces dictionary
@@ -77,7 +77,7 @@
 #' Vietnamese Provinces By Year
 #'
 #' A list of charactor vector containing the English names of the provinces
-#' names in Vietnamese ordered by year.
+#' ordered by year.
 #'
 #' One specificity of Vietnam is the splits of administrative provinces during
 #' its history, starting from 40 provinces in 1980 and ending with 63 provinces
@@ -86,7 +86,7 @@
 #'
 #' @usage data(vn_province_year)
 #'
-#' @format An object of class \\code{list} of length 7.
+#' @format An object of class \code{list} of length 7.
 #'  \itemize{
 #'    \item \code{1979}: character vector of the 40 provinces in English
 #'    \item \code{1990}: character vector of the 44 provinces in English
@@ -105,6 +105,82 @@
 #' vn_province_year$`1992`
 #'
 "vn_province_year"
+
+#' Cambodian Provinces By Year
+#'
+#' A list of charactor vector containing the English names of the provinces
+#' ordered by year. This list contains for each of change, the name of the "new"
+#' provinces in English.
+#'
+#' @usage data(kh_province_year)
+#'
+#' @format An object of class \code{list} of length 3.
+#'  \itemize{
+#'    \item \code{1994}: character vector of the 23 provinces in English
+#'    \item \code{1997}: character vector of the 24 provinces in English
+#'    \item \code{2013}: character vector of the 25 provinces in English
+#' }
+#'
+#' @examples
+#' # To have the year of each events of splitting/merging:
+#' names(kh_province_year)
+#'
+#' # To have the names of the province, between 1992 and 1997:
+#' kh_province_year$`1994`
+#'
+"kh_province_year"
+
+#' Thai Provinces By Year
+#'
+#' A list of charactor vector containing the English names of the provinces
+#' ordered by year. This list contains for each of change, the name of the "new"
+#' provinces in English.
+#'
+#' @usage data(th_province_year)
+#'
+#' @format An object of class \code{list} of length 7.
+#'  \itemize{
+#'    \item \code{1967}: character vector of the 71 provinces in English
+#'    \item \code{1972}: character vector of the 71 provinces in English
+#'    \item \code{1977}: character vector of the 72 provinces in English
+#'    \item \code{1981}: character vector of the 72 provinces in English
+#'    \item \code{1982}: character vector of the 73 provinces in English
+#'    \item \code{1993}: character vector of the 76 provinces in English
+#'    \item \code{2011}: character vector of the 77 provinces in English
+#' }
+#'
+#' @examples
+#' # To have the year of each events of splitting/merging:
+#' names(th_province_year)
+#'
+#' # To have the names of the province, between 1993 and 2011:
+#' th_province_year$`1993`
+#'
+"th_province_year"
+
+#' Lao Provinces By Year
+#'
+#' A list of charactor vector containing the English names of the provinces
+#' ordered by year. This list contains for each of change, the name of the "new"
+#' provinces in English.
+#'
+#' @usage data(la_province_year)
+#'
+#' @format An object of class \code{list} of length 3.
+#'  \itemize{
+#'    \item \code{1997}: character vector of the 18 provinces in English
+#'    \item \code{2006}: character vector of the 17 provinces in English
+#'    \item \code{2013}: character vector of the 18 provinces in English
+#' }
+#'
+#' @examples
+#' # To have the year of each events of splitting/merging:
+#' names(la_province_year)
+#'
+#' # To have the names of the province, between 1997 and 2006:
+#' la_province_year$`1997`
+#'
+"la_province_year"
 
 #' Vietnamese Provinces Boundaries History (since 1979)
 #'
@@ -138,7 +214,7 @@
 #' @format An object of class \code{list} of length 9.
 "th_history"
 
-#' Lao Provinces Boundaries History (since 1995)
+#' Lao Provinces Boundaries History (since 1993)
 #'
 #' List of 2 lists containing 6 elements:
 #'  \itemize{

@@ -3,7 +3,7 @@
 \docType{data}
 \name{la_history}
 \alias{la_history}
-\title{Lao Provinces Boundaries History (since 1995)}
+\title{Lao Provinces Boundaries History (since 1993)}
 \format{An object of class \code{list} of length 2.}
 \usage{
 data(la_history)

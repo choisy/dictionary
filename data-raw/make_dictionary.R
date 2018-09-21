@@ -202,10 +202,24 @@ la_province <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
   add_dictionary(
     transl = c("Champasak", "Houaphan", "Khammouan", "Phongsali",
              "Xiangkhoang", "Xaisomboun", "Xaisomboun",
-             "Xaisomboun", "Xaisomboun"),
+             "Xaisomboun", "Xaisomboun",
+             "Vientiane_prefecture", "Vientiane_prefecture", "Phongsali",
+             "Louang Namtha", "Oudomxai", "Bokeo", "Louangphrabang", "Houaphan",
+             "Xaignabouri", "Xiangkhoang", "Vientiane", "Bolikhamxai",
+             "Khammouan", "Savannakhet", "Saravan", "Xekong", "Champasak",
+             "Attapu", "Attapu", "Vientiane_prefecture", "Xaisomboun",
+             "Vientiane_prefecture", "Vientiane_prefecture",
+             "Vientiane_prefecture", "Vientiane", "Vientiane_prefecture"),
     origin = c("champasack", "houaphanh", "khammuane", "phongsay",
                "xiengkuang", "special zone", "specialzone",
-               "xaysomboun special region", "xaysombounspecialregion"), .) %>%
+               "xaysomboun special region", "xaysombounspecialregion",
+               "VIENTIANE MUNICIPALITY", "vct", "psl",
+               "lnt", "odx", "bk", "lpb", "hp",
+               "xyb", "xk", "vp", "blx",
+               "km", "svk", "srv", "sk", "cps",
+               "atp", "att", "The Capital", "Special zone",
+               "The Capital City", "Vientiane Capital",
+               "Vientiane M", "Vientiane P", "vientiane city"), .) %>%
   create_dictionary(df = read.csv(
     "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
       filter(CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"),
@@ -262,12 +276,12 @@ kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
              "Preah Sihanouk", "Kampong Chhnang", "Otdar Mean Chey",
              "Otdar Mean Chey", "Kampong Chhnang", "Kep",
              "Otdar Mean Chey", "Pailin", "Phnom Penh", "Siemreab",
-             "Stoeng Treng"),
+             "Stoeng Treng", "Otdar Mean Chey"),
     origin = c("b.meanchey", "k preah sihanouk", "k.pr.sihaknouk",
                "k.preahsihaknouk", "kg.chhnang", "o.meanchey",
                "oddor meanchey", "kompong chhnang", "krong kep",
                "oddar mean chey", "paillin", "phom penh", "siam reap",
-               "steung treng"), .) %>%
+               "steung treng", "ŎTDÂR MÉANCHEY"), .) %>%
   create_dictionary(df = read.csv(
     "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
       filter(CountryName == "CAMBODIA"),
