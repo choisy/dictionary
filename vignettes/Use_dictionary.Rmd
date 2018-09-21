@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction
 
 This package contains a dictionary for Vietnamese provinces names, districts names and communes names, useful to ensure consistency between different data packages using Vietnamese provinces, districts and/or communes. It also contains dictionaries for the Camdodian, Lao and Thai provinces names and Lao districts.
-The package also contains the list names of the provinces of Vietnam ordered by year. One specificity of Vietnam is the splits of administrative provinces during its history, starting from 40 provinces in 1980 and ending with 63 provinces since 2008. This list contains for each of change, the name of the "new" provinces in English. We also have a list by country (Vietnam, Laos, Cambodge, Thailand) of the history of change in administrative boundaries
+The package also contains the list names of the provinces ordered by year. These lists contain for each of change, the name of the "new" provinces in English. We also have a list by country (Vietnam, Laos, Cambodge, Thailand) of the history of change in administrative boundaries
 
 
 ```{r eval=F}
@@ -113,7 +113,7 @@ str(province_transl)
 province_transl
 ```
 
-## List of province per year (only available for Vietnam)
+## List of province per year
 
 It's a `list` object : 
 
@@ -149,5 +149,20 @@ For example, the Laos history contains complexe event:
 la_history
 ```
 
+## Function
 
+In the package, the function `match_pattern` with the `XX_province_year` can be used to return the year of expression of the province in a data frame.
 
+For example, if we use a data frame containing data expressed by province: 
+```{r}
+data <- data.frame(
+  province = unique(la_province %>% grep("Xaisomboun", ., value = TRUE, invert = TRUE)),
+  value = sample(1:3, length(unique(la_province)[-1]), T))
+head(data)
+```
+
+We can now, used the `match_pattern` function:
+```{r}
+match_pattern(data, "province", la_province_year)
+# the data are expressed with the province definition of 2006
+```
