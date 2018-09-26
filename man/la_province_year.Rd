@@ -6,9 +6,9 @@
 \title{Lao Provinces By Year}
 \format{An object of class \code{list} of length 3.
  \itemize{
-   \item \code{1997}: character vector of the 18 provinces in English
-   \item \code{2006}: character vector of the 17 provinces in English
-   \item \code{2013}: character vector of the 18 provinces in English
+   \item \code{"1997-2006"}: character vector of the 18 provinces in English
+   \item \code{"2006-2013"}: character vector of the 17 provinces in English
+   \item \code{"2013-2020"}: character vector of the 18 provinces in English
 }}
 \usage{
 data(la_province_year)

@@ -88,13 +88,13 @@
 #'
 #' @format An object of class \code{list} of length 7.
 #'  \itemize{
-#'    \item \code{1979}: character vector of the 40 provinces in English
-#'    \item \code{1990}: character vector of the 44 provinces in English
-#'    \item \code{1991}: character vector of the 45 provinces in English
-#'    \item \code{1992}: character vector of the 53 provinces in English
-#'    \item \code{1997}: character vector of the 61 provinces in English
-#'    \item \code{2004}: character vector of the 64 provinces in English
-#'    \item \code{2008}: character vector of the 63 provinces in English
+#'    \item \code{"1979-1990"}: character vector of the 40 provinces in English
+#'    \item \code{"1990-1991"}: character vector of the 44 provinces in English
+#'    \item \code{"1991-1992"}: character vector of the 45 provinces in English
+#'    \item \code{"1992-1997"}: character vector of the 53 provinces in English
+#'    \item \code{"1997-2004"}: character vector of the 61 provinces in English
+#'    \item \code{"2004-2008"}: character vector of the 64 provinces in English
+#'    \item \code{"2008-2020"}: character vector of the 63 provinces in English
 #' }
 #'
 #' @examples
@@ -116,9 +116,9 @@
 #'
 #' @format An object of class \code{list} of length 3.
 #'  \itemize{
-#'    \item \code{1994}: character vector of the 23 provinces in English
-#'    \item \code{1997}: character vector of the 24 provinces in English
-#'    \item \code{2013}: character vector of the 25 provinces in English
+#'    \item \code{"1994-1997"}: character vector of the 23 provinces in English
+#'    \item \code{"1997-2013"}: character vector of the 24 provinces in English
+#'    \item \code{"2013-2020"}: character vector of the 25 provinces in English
 #' }
 #'
 #' @examples
@@ -140,13 +140,13 @@
 #'
 #' @format An object of class \code{list} of length 7.
 #'  \itemize{
-#'    \item \code{1967}: character vector of the 71 provinces in English
-#'    \item \code{1972}: character vector of the 71 provinces in English
-#'    \item \code{1977}: character vector of the 72 provinces in English
-#'    \item \code{1981}: character vector of the 72 provinces in English
-#'    \item \code{1982}: character vector of the 73 provinces in English
-#'    \item \code{1993}: character vector of the 76 provinces in English
-#'    \item \code{2011}: character vector of the 77 provinces in English
+#'    \item \code{"1967-1972"}: character vector of the 71 provinces in English
+#'    \item \code{"1972-1977"}: character vector of the 71 provinces in English
+#'    \item \code{"1977-1981"}: character vector of the 72 provinces in English
+#'    \item \code{"1981-1982"}: character vector of the 72 provinces in English
+#'    \item \code{"1982-1993"}: character vector of the 73 provinces in English
+#'    \item \code{"1993-2011"}: character vector of the 76 provinces in English
+#'    \item \code{"2011-2020"}: character vector of the 77 provinces in English
 #' }
 #'
 #' @examples
@@ -168,9 +168,9 @@
 #'
 #' @format An object of class \code{list} of length 3.
 #'  \itemize{
-#'    \item \code{1997}: character vector of the 18 provinces in English
-#'    \item \code{2006}: character vector of the 17 provinces in English
-#'    \item \code{2013}: character vector of the 18 provinces in English
+#'    \item \code{"1997-2006"}: character vector of the 18 provinces in English
+#'    \item \code{"2006-2013"}: character vector of the 17 provinces in English
+#'    \item \code{"2013-2020"}: character vector of the 18 provinces in English
 #' }
 #'
 #' @examples

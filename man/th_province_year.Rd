@@ -6,13 +6,13 @@
 \title{Thai Provinces By Year}
 \format{An object of class \code{list} of length 7.
  \itemize{
-   \item \code{1967}: character vector of the 71 provinces in English
-   \item \code{1972}: character vector of the 71 provinces in English
-   \item \code{1977}: character vector of the 72 provinces in English
-   \item \code{1981}: character vector of the 72 provinces in English
-   \item \code{1982}: character vector of the 73 provinces in English
-   \item \code{1993}: character vector of the 76 provinces in English
-   \item \code{2011}: character vector of the 77 provinces in English
+   \item \code{"1967-1972"}: character vector of the 71 provinces in English
+   \item \code{"1972-1977"}: character vector of the 71 provinces in English
+   \item \code{"1977-1981"}: character vector of the 72 provinces in English
+   \item \code{"1981-1982"}: character vector of the 72 provinces in English
+   \item \code{"1982-1993"}: character vector of the 73 provinces in English
+   \item \code{"1993-2011"}: character vector of the 76 provinces in English
+   \item \code{"2011-2020"}: character vector of the 77 provinces in English
 }}
 \usage{
 data(th_province_year)

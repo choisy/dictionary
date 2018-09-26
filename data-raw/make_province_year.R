@@ -67,7 +67,7 @@ list_year_province <- function(vect, history_lst, from = "1960", to = "2020") {
   total_lst <- lapply(seq_along(sel_year), function (x) {
     old_v <- old_vect(vect, history_lst, from = sel_year[x], to = to)
   }) %>%
-    setNames(sel_year)
+    setNames(sel_year %>% paste(c(sel_year[-1], to), sep = "-"))
 }
 
 # From the gadm file of level 1 in a RDS format, extract the name of the actual

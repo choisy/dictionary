@@ -6,9 +6,9 @@
 \title{Cambodian Provinces By Year}
 \format{An object of class \code{list} of length 3.
  \itemize{
-   \item \code{1994}: character vector of the 23 provinces in English
-   \item \code{1997}: character vector of the 24 provinces in English
-   \item \code{2013}: character vector of the 25 provinces in English
+   \item \code{"1994-1997"}: character vector of the 23 provinces in English
+   \item \code{"1997-2013"}: character vector of the 24 provinces in English
+   \item \code{"2013-2020"}: character vector of the 25 provinces in English
 }}
 \usage{
 data(kh_province_year)
