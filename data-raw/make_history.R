@@ -82,12 +82,28 @@ id_province <- function(vect, extractor, hash) {
 # the extractor parametes permit to select the district names before (1) or
 # after (2) the event. Hash for the translation of the district name in a
 # standardized format
-id_district <- function(vect, extractor, hash) {
-  vect %>%
-    split_event(.) %>% map(extractor) %>% unlist %>%
-    strsplit(";") %>% map(str_extract, "\\(.+\\)") %>%
-    map(paste, collapse = ", ") %>% gsub("\\(|\\)", "", .) %>%
-    strsplit(", ") %>% map(translate, hash) %>% map(as.list) %>% map(na.omit)
+id_district <- function(vect, extractor, hash_p, hash_d) {
+  vect %>% split_event(.) %>% map(extractor) %>% unlist %>%
+    strsplit(";") %>% map(strsplit, "[[:digit:]],") %>% map(unlist) %>%
+    map(keep, is_notnumeric) %>% flatten() %>%
+    data_frame(province = unlist(.)) %>%
+    mutate(district = str_extract(province, "\\(.+\\)") %>%
+             map(paste, collapse = ", ") %>%
+             gsub("\\(|\\)", "", .) %>% strsplit(", ") %>%
+             map(translate, hash_d),
+           province = str_extract(province, ".*(?=(\\(.+\\)))|.*") %>%
+             gsub(" in ", "", .) %>%
+             map(translate, hash_p) %>% unlist) %>%
+    select(province, district) %>%
+    #tidyr::unnest() %>%
+    #mutate(total = paste0(province, "_", district) %>% gsub(".*_NA", NA, .)) %>%
+    #select(total) %>%
+    list
+  #vect %>%
+   # split_event(.) %>% map(extractor) %>% unlist %>%
+  #  strsplit(";") %>% map(str_extract, "\\(.+\\)") %>%
+  #  map(paste, collapse = ", ") %>% gsub("\\(|\\)", "", .) %>%
+  #  strsplit(", ") %>% map(translate, hash) %>% map(as.list) %>% map(na.omit)
 }
 
 # From a text file (see prerequisite), make a list of list of 4 elements:
@@ -107,8 +123,8 @@ make_history <-  function(file, hash, d.hash) {
 
   if (any(df$event %>% str_detect("complexe"))) {
     df %<>% mutate(
-      d.before = id_district(V1, 1, d.hash),
-      d.after = id_district(V1, 2, d.hash))
+      d.before = id_district(V1, 1, hash, d.hash),
+      d.after = id_district(V1, 2, hash, d.hash))
   }
 
   df %>%
