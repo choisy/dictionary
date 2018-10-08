@@ -12,6 +12,8 @@
 #' the list of pattern.
 #' @param lst_pattern a named list of pattern, should contains one or multiple
 #' vector. Each slot should be named.
+#' @param strict a boolean to indicate if the character string should match only
+#' some value in the vector (FALSE) or all values (TRUE) on the list of pattern.
 #'
 #' @return \code{match_pattern} returns a character vector.
 #'
@@ -28,12 +30,14 @@
 #' @importFrom dplyr select %>%
 #' @export
 #'
-match_pattern <- function(df, colname, lst_pattern){
+match_pattern <- function(df, colname, lst_pattern, strict = TRUE){
   vect <- df %>% select(colname) %>% unlist
   for (i in seq_along(lst_pattern)) {
     if (setdiff(vect, lst_pattern[[i]]) %>% length == 0) {
-      if(setdiff(lst_pattern[[i]], vect) %>% length == 0) {
-        print(names(lst_pattern[i]))
+      if(strict == TRUE & setdiff(lst_pattern[[i]], vect) %>% length == 0) {
+        return(names(lst_pattern[i]))
+      } else if (strict == FALSE) {
+        return(names(lst_pattern[i]))
       }
     }
   }

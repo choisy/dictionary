@@ -4,7 +4,7 @@
 \alias{match_pattern}
 \title{Compares one column against patterns}
 \usage{
-match_pattern(df, colname, lst_pattern)
+match_pattern(df, colname, lst_pattern, strict = TRUE)
 }
 \arguments{
 \item{df}{a data frame.}
@@ -14,6 +14,9 @@ the list of pattern.}
 
 \item{lst_pattern}{a named list of pattern, should contains one or multiple
 vector. Each slot should be named.}
+
+\item{strict}{a boolean to indicate if the character string should match only
+some value in the vector (FALSE) or all values (TRUE) on the list of pattern.}
 }
 \value{
 \code{match_pattern} returns a character vector.
