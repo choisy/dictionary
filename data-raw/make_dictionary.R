@@ -276,12 +276,14 @@ kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
              "Preah Sihanouk", "Kampong Chhnang", "Otdar Mean Chey",
              "Otdar Mean Chey", "Kampong Chhnang", "Kep",
              "Otdar Mean Chey", "Pailin", "Phnom Penh", "Siemreab",
-             "Stoeng Treng", "Otdar Mean Chey"),
+             "Stoeng Treng", "Otdar Mean Chey", "Rotanokiri",
+             "Otdar Mean Chey"),
     origin = c("b.meanchey", "k preah sihanouk", "k.pr.sihaknouk",
                "k.preahsihaknouk", "kg.chhnang", "o.meanchey",
                "oddor meanchey", "kompong chhnang", "krong kep",
                "oddar mean chey", "paillin", "phom penh", "siam reap",
-               "steung treng", "ŎTDÂR MÉANCHEY"), .) %>%
+               "steung treng", "ŎTDÂR MÉANCHEY", "Ratanak Kiri",
+               "Otdar Meanchey"), .) %>%
   create_dictionary(df = read.csv(
     "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
       filter(CountryName == "CAMBODIA"),
@@ -339,10 +341,43 @@ vn_district <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds") %>%
                     names_var = "old",
                     hash = .)
 
+# Country ----------------------------------------------------------------------
+
+SEA_country <- setNames(c("Cambodia", "Laos", "Thailand",
+             "Vietnam"),
+             c("CAMBODIA", "LAO PEOPLES DEMOCRATIC REPUBLIC ", "THAILAND",
+             "VIET NAM")) %>%
+  create_dictionary(read.csv(
+  "data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
+  names_transl = "CountryName_Preferred",
+  names_var = c("CountryISO", "CountryName", "CountryName_Preferred"),
+  hash = .)
+
+
+# South East Asia ISO ----------------------------------------------------------
+
+ISO_province <- create_dictionary(read.csv(
+  "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8_epix.csv"),
+  names_transl = "Admin1ISO", names_var = c("Admin1Name", "epix",
+                                            "Admin1Name_Preferred",
+                                            "Admin1ISO")) %>%
+  add_dictionary(
+    transl = c("KH-22", "LA-VT", "TH-14"),
+    origin = c("Kep", "Vientiane_prefecture", "Phra Nakhon Si Ayutthaya"), .)
+
+
+ISO_country <- create_dictionary(read.csv(
+  "data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
+  names_transl = "CountryISO", names_var = c("CountryISO",
+                                            "CountryName",
+                                            "CountryName_Preferred"))
+
+
 # Writing to disk --------------------------------------------------------------
 
 devtools::use_data(kh_province, la_province, th_province,
                    vn_province, vn_district, la_district,
+                   SEA_country, ISO_country, ISO_province,
                    overwrite = TRUE)
 
 # Remove everything ------------------------------------------------------------
