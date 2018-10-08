@@ -28,7 +28,7 @@
 #'
 #' @usage data(la_district)
 #'
-#' @format An object of class \code{character} of length 1626.
+#' @format An object of class \code{character} of length 1632.
 "la_district"
 
 #' Vietnamese Provinces dictionary
@@ -50,7 +50,7 @@
 #'
 #' @usage data(la_province)
 #'
-#' @format An object of class \code{character} of length 1346.
+#' @format An object of class \code{character} of length 1353.
 "la_province"
 
 #' Cambodian Provinces dictionary
@@ -61,7 +61,7 @@
 #'
 #' @usage data(kh_province)
 #'
-#' @format An object of class \code{character} of length 3791.
+#' @format An object of class \code{character} of length 3805.
 "kh_province"
 
 #' Thai Provinces dictionary
@@ -73,6 +73,36 @@
 #'
 #' @format An object of class \code{character} of length 3275.
 "th_province"
+
+#' ISO Provinces dictionary
+#'
+#'A named character vector containing the translation in ISO code 3166-66 of the
+#' provinces names of South East Asia country.
+#'
+#' @usage data(ISO_province)
+#'
+#' @format An object of class \code{character} of length 2357.
+"ISO_province"
+
+#' ISO Countries dictionary
+#'
+#'A named character vector containing the translation in ISO code 3166-66 of the
+#' country names of South East Asia.
+#'
+#' @usage data(ISO_country)
+#'
+#' @format An object of class \code{character} of length 41.
+"ISO_country"
+
+#' SEA Countries dictionary
+#'
+#'A named character vector containing the translation in English of the
+#' country names of South East Asia.
+#'
+#' @usage data(SEA_country)
+#'
+#' @format An object of class \code{character} of length 42.
+"SEA_country"
 
 #' Vietnamese Provinces By Year
 #'
