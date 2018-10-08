@@ -4,22 +4,22 @@
 \name{vn_province_year}
 \alias{vn_province_year}
 \title{Vietnamese Provinces By Year}
-\format{An object of class \\code{list} of length 7.
+\format{An object of class \code{list} of length 7.
  \itemize{
-   \item \code{1979}: character vector of the 40 provinces in English
-   \item \code{1990}: character vector of the 44 provinces in English
-   \item \code{1991}: character vector of the 45 provinces in English
-   \item \code{1992}: character vector of the 53 provinces in English
-   \item \code{1997}: character vector of the 61 provinces in English
-   \item \code{2004}: character vector of the 64 provinces in English
-   \item \code{2008}: character vector of the 63 provinces in English
+   \item \code{"1979-1990"}: character vector of the 40 provinces in English
+   \item \code{"1990-1991"}: character vector of the 44 provinces in English
+   \item \code{"1991-1992"}: character vector of the 45 provinces in English
+   \item \code{"1992-1997"}: character vector of the 53 provinces in English
+   \item \code{"1997-2004"}: character vector of the 61 provinces in English
+   \item \code{"2004-2008"}: character vector of the 64 provinces in English
+   \item \code{"2008-2020"}: character vector of the 63 provinces in English
 }}
 \usage{
 data(vn_province_year)
 }
 \description{
 A list of charactor vector containing the English names of the provinces
-names in Vietnamese ordered by year.
+ordered by year.
 }
 \details{
 One specificity of Vietnam is the splits of administrative provinces during

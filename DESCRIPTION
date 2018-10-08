@@ -10,7 +10,7 @@ Authors@R:c(person("Marc", "Choisy",
                     email = "contamin.lucie@gmail.com", 
                     role = "aut",
                     comment = c(ORCID = "https://orcid.org/0000-0001-5797-1279")))
-Description: This package contains a dictionary for Vietnamese, Lao, THai,
+Description: This package contains a dictionary for Vietnamese, Lao, Thai,
   Cambodian provinces names, Vietnamese districts names and communes names, 
   useful to ensure consistency between different data packages using provinces,
   districts and/or communes.
@@ -18,8 +18,10 @@ License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
 Depends:
-    R (>= 2.10)
+    R (>= 2.10),
+    dplyr
 VignetteBuilder: knitr
 Suggests:
     knitr,
-    stringi
+    stringi,
+    gdpm
