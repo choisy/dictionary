@@ -95,15 +95,7 @@ id_district <- function(vect, extractor, hash_p, hash_d) {
              gsub(" in ", "", .) %>%
              map(translate, hash_p) %>% unlist) %>%
     select(province, district) %>%
-    #tidyr::unnest() %>%
-    #mutate(total = paste0(province, "_", district) %>% gsub(".*_NA", NA, .)) %>%
-    #select(total) %>%
     list
-  #vect %>%
-   # split_event(.) %>% map(extractor) %>% unlist %>%
-  #  strsplit(";") %>% map(str_extract, "\\(.+\\)") %>%
-  #  map(paste, collapse = ", ") %>% gsub("\\(|\\)", "", .) %>%
-  #  strsplit(", ") %>% map(translate, hash) %>% map(as.list) %>% map(na.omit)
 }
 
 # From a text file (see prerequisite), make a list of list of 4 elements:
@@ -111,6 +103,8 @@ id_district <- function(vect, extractor, hash_p, hash_d) {
 # 'event': character either split, merge or rename,
 # 'before': name of the province(s) before the event in a list and
 # 'after': name of the province(s) after the event in a list
+# 'd.before' : name of the districts concerned by the event (only for complex event)
+# 'd.after' : name of the districts concerned by the event (only for complex event)
 make_history <-  function(file, hash, d.hash) {
 
   hist_list <- read.delim(file, header = FALSE)
