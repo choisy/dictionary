@@ -34,7 +34,7 @@ match_pattern <- function(df, colname, lst_pattern, strict = TRUE){
   vect <- df %>% select(colname) %>% unlist
   for (i in seq_along(lst_pattern)) {
     if (setdiff(vect, lst_pattern[[i]]) %>% length == 0) {
-      if(strict == TRUE & setdiff(lst_pattern[[i]], vect) %>% length == 0) {
+      if (strict == TRUE & setdiff(lst_pattern[[i]], vect) %>% length == 0) {
         return(names(lst_pattern[i]))
       } else if (strict == FALSE) {
         return(names(lst_pattern[i]))

@@ -45,7 +45,9 @@ We can use some examples to demonstrate our package:
 We create a vector containing some communes names in Vietnamese:
 
 ```{r}
-communes_vn <- c("Xã Nghĩa Lợi", "Xã Nam Mẫu", "Xã Xuân Vinh", "Thị trấn Thứ Ba", "Xã Hải Dương", "Xã Vĩnh Lộc A", "Xã Nội Hoàng", "Xã Điện Trung", "Xã Hoàng Đồng", "Xã Nàn Sán")
+communes_vn <- c("Xã Nghĩa Lợi", "Xã Nam Mẫu", "Xã Xuân Vinh",
+                 "Thị trấn Thứ Ba", "Xã Hải Dương", "Xã Vĩnh Lộc A",
+                 "Xã Nội Hoàng", "Xã Điện Trung", "Xã Hoàng Đồng", "Xã Nàn Sán")
 ```
 
 We can use the `character vector` `communes` to translate the Vietnamese vector but first the vector should be encode in UNICODE to avoid encoding trouble. For that, we use the `stringi` package:
@@ -88,8 +90,12 @@ To use them, it's the same principle for the provinces and the districts:
 We create two vectors that needed to be translate: 
 
 ```{r}
-districts_vn <- c("Huyện Tây Hòa", "Huyện Kim Thành", "Quận Liên Chiểu", "Huyện Tương Dương", "Huyện Bình Đại", "Thị xã Mường Lay", "Thành phố Vĩnh Long", "Huyện Gia Viễn", "Huyện Văn Quan", "Thị xã Sông Công")
-provinces_vn <- c("Ninh Bình", "Hà Nội", "An Giang", "Bình Phước", "Lào Cai", "Phú Thọ", "Bắc Giang", "Vĩnh Phúc", "Bạc Liêu", "Hà Giang")
+districts_vn <- c("Huyện Tây Hòa", "Huyện Kim Thành", "Quận Liên Chiểu",
+                  "Huyện Tương Dương", "Huyện Bình Đại",
+                  "Thị xã Mường Lay", "Thành phố Vĩnh Long",
+                  "Huyện Gia Viễn", "Huyện Văn Quan", "Thị xã Sông Công")
+provinces_vn <- c("Ninh Bình", "Hà Nội", "An Giang", "Bình Phước", "Lào Cai",
+                  "Phú Thọ", "Bắc Giang", "Vĩnh Phúc", "Bạc Liêu", "Hà Giang")
 ```
 
 But, we use the `character vector` `districts` and `provinces` contains in the package to translate the two vectors after changing the encoding to UNICODE:
@@ -156,7 +162,8 @@ In the package, the function `match_pattern` with the `XX_province_year` can be 
 For example, if we use a data frame containing data expressed by province: 
 ```{r}
 data <- data.frame(
-  province = unique(la_province %>% grep("Xaisomboun", ., value = TRUE, invert = TRUE)),
+  province = unique(la_province %>%
+                      grep("Xaisomboun", ., value = TRUE, invert = TRUE)),
   value = sample(1:3, length(unique(la_province)[-1]), T))
 head(data)
 ```
