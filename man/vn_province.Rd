@@ -4,7 +4,7 @@
 \name{vn_province}
 \alias{vn_province}
 \title{Vietnamese Provinces dictionary}
-\format{An object of class \code{character} of length 5013.}
+\format{An object of class \code{character} of length 5212.}
 \usage{
 data(vn_province)
 }
