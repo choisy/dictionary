@@ -25,4 +25,5 @@ VignetteBuilder: knitr
 Suggests:
     knitr,
     stringi,
-    gdpm
+    gdpm,
+    testthat
