@@ -61,7 +61,7 @@
 #'
 #' @usage data(kh_province)
 #'
-#' @format An object of class \code{character} of length 3805.
+#' @format An object of class \code{character} of length 3812.
 "kh_province"
 
 #' Thai Provinces dictionary
