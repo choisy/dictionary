@@ -277,19 +277,20 @@ kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
              "Otdar Mean Chey", "Kampong Chhnang", "Kep",
              "Otdar Mean Chey", "Pailin", "Phnom Penh", "Siemreab",
              "Stoeng Treng", "Otdar Mean Chey", "Rotanokiri",
-             "Otdar Mean Chey"),
+             "Otdar Mean Chey", "Kampong Chhnang"),
     origin = c("b.meanchey", "k preah sihanouk", "k.pr.sihaknouk",
                "k.preahsihaknouk", "kg.chhnang", "o.meanchey",
                "oddor meanchey", "kompong chhnang", "krong kep",
                "oddar mean chey", "paillin", "phom penh", "siam reap",
                "steung treng", "ŎTDÂR MÉANCHEY", "Ratanak Kiri",
-               "Otdar Meanchey"), .) %>%
+               "Otdar Meanchey", "Kampong Chhanang"), .) %>%
   create_dictionary(df = read.csv(
     "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
       filter(CountryName == "CAMBODIA"),
     names_transl = "Admin1Name_Preferred",
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
     hash = .)
+
 
 # FOR VIETNAM ------------------------------------------------------------------
 
