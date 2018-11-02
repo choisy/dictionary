@@ -15,7 +15,8 @@
 #' @param strict a boolean to indicate if the character string should match only
 #' some value in the vector (FALSE) or all values (TRUE) on the list of pattern.
 #'
-#' @return \code{match_pattern} returns a character vector.
+#' @return \code{match_pattern} In case of a matching, the function will return
+#' a character vector, if not, it will return NULL
 #'
 #' @examples
 #'
@@ -23,7 +24,8 @@
 #' # gdpm data frame (epidemiologic data from Vietnam)
 #' library(gdpm)
 #'
-#' df <- getid(dengue) # get data for dengue for Vietnam
+#' df <- getid(dengue, from = 1980, to = 1982) # get data for dengue for Vietnam
+#' # Allows to check the spatial expression is corresponding to the year
 #' match_pattern(df, "province", vn_province_year)
 #'
 #'
