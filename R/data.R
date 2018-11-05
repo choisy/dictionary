@@ -39,7 +39,7 @@
 #'
 #' @usage data(vn_province)
 #'
-#' @format An object of class \code{character} of length 5212.
+#' @format An object of class \code{character} of length 5539.
 "vn_province"
 
 #' Lao Provinces dictionary

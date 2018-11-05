@@ -321,9 +321,27 @@ vn_province <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
                     hash = .)  %>%
   add_dictionary(
     transl = c("Quang Nam - Da Nang", "Thua Thien Hue", "Ho Chi Minh",
-             "Ba Ria - Vung Tau"),
+             "Ba Ria - Vung Tau", "hanoi", "ha giang", "cao bang",
+             "tuyen quang", "lao cai", "lai chau", "son la", "yen bai",
+             "hoa binh", "thai nguyen", "lang son", "quang ninh", "bac giang",
+             "phu tho", "hai duong", "hai phong", "hung yen", "thanh hoa",
+             "nghe an", "quang binh", "quang tri", "da nang", "quang nam",
+             "quang ngai", "phu yen", "khanh hoa", "kon tum", "gia lai",
+             "dak lak", "dak nong", "lam dong", "binh phuoc", "tay ninh",
+             "binh duong", "dong nai", "ba ria vung tau", "ho chi minh",
+             "long an", "tien giang", "vinh long", "dong thap", "an giang",
+             "kien giang", "can tho", "hau giang", "soc trang", "bac lieu"),
     origin = c("Q. NAM-DA NANG", "THUA THIEN - HUE", "TP. HO CHI MINH",
-               "VUNG TAU - BA RIA"), .) %>%
+               "VUNG TAU - BA RIA", "han i", "ha ian ", "ca  ban ",
+               "tu en uan ", "a  cai", "ai chau", "s n a", "en bai", "h a binh",
+               "thai n u en", "an  s n", "uan  ninh", "bac ian ", "phu th ",
+               "hai du n ", "hai ph n ", "hun  en", "thanh h a", "n he an",
+               "uan  binh", "uan  tri", "da nan ", "uan  nam", "uan  n ai",
+               "phu en", "khanh h a", "k n tum", "ia ai", "dak ak", "dak n n ",
+               "am d n ", "binh phu c", "ta  ninh", "binh du n ", "d n  nai",
+               "ba ria vun  tau", "h  chi minh", "n  an", "tien ian ",
+               "vinh n ", "d n  thap", "an ian ", "kien ian ", "can th ",
+               "hau ian ", "s c tran ", "bac ieu"), .) %>%
   create_dictionary(df = read.csv(
     "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
       filter(CountryName == "VIET NAM"),
