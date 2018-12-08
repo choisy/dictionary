@@ -22,8 +22,10 @@ Depends:
     R (>= 2.10),
     dplyr
 VignetteBuilder: knitr
+Imports:
+    countrycode,
+    stringi
 Suggests:
     knitr,
-    stringi,
     gdpm,
     testthat
