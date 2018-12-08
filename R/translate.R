@@ -1,4 +1,4 @@
-#' Function to translate vector in English without accent
+#' Translates Vector in English Without Accent
 #'
 #' Translates string vector in English without accent using dictionary created
 #' and stored in the package by country and level of administrative boundaries.
@@ -10,7 +10,8 @@
 #'
 #' @importFrom stringi stri_escape_unicode
 #' @importFrom countrycode countrycode
-#' @return string vector
+#'
+#' @return String vector of the same length as input in `vect` argument
 #' @export
 #'
 #' @examples

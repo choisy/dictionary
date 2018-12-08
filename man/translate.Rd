@@ -2,7 +2,7 @@
 % Please edit documentation in R/translate.R
 \name{translate}
 \alias{translate}
-\title{Function to translate vector in English without accent}
+\title{Translates Vector in English Without Accent}
 \usage{
 translate(vect, country, level)
 }
@@ -15,7 +15,7 @@ translate(vect, country, level)
 3 for city/commune.}
 }
 \value{
-string vector
+String vector of the same length as input in `vect` argument
 }
 \description{
 Translates string vector in English without accent using dictionary created
