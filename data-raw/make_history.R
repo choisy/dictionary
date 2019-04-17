@@ -62,8 +62,8 @@ id_event <- function(vect) {
 id_date <- function(vect) {
   gsub("[^[:digit:]]", "", vect) %>%
     paste0(., "-01-01") %>%
-    as.Date %>%
-    as.character
+    as.Date() %>%
+    as.character()
 }
 
 # Function to identify the province name and return a vector of character,
@@ -72,7 +72,7 @@ id_date <- function(vect) {
 # standardized format
 id_province <- function(vect, extractor, hash) {
   vect %>%
-    split_event(.) %>% map(extractor) %>% unlist %>%
+    split_event(.) %>% map(extractor) %>% unlist() %>%
     strsplit(";") %>% map(str_extract, ".*(?=(\\(.+\\)))|.*") %>%
     map(strsplit, ", ") %>% map(unlist) %>% map(keep, is_notnumeric) %>%
     map(translate, hash) %>% map(as.list)
@@ -83,7 +83,7 @@ id_province <- function(vect, extractor, hash) {
 # after (2) the event. Hash for the translation of the district name in a
 # standardized format
 id_district <- function(vect, extractor, hash_p, hash_d) {
-  vect %>% split_event(.) %>% map(extractor) %>% unlist %>%
+  vect %>% split_event(.) %>% map(extractor) %>% unlist() %>%
     strsplit(";") %>% map(strsplit, "[[:digit:]],") %>% map(unlist) %>%
     map(keep, is_notnumeric) %>% flatten() %>%
     data_frame(province = unlist(.)) %>%
@@ -93,9 +93,9 @@ id_district <- function(vect, extractor, hash_p, hash_d) {
              map(translate, hash_d),
            province = str_extract(province, ".*(?=(\\(.+\\)))|.*") %>%
              gsub(" in ", "", .) %>%
-             map(translate, hash_p) %>% unlist) %>%
+             map(translate, hash_p) %>% unlist()) %>%
     select(province, district) %>%
-    list
+    list()
 }
 
 # From a text file (see prerequisite), make a list of list of 4 elements:

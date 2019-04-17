@@ -22,7 +22,7 @@ data(vn_history)
 # parameters `from` and `to` and returns a list of event ordered from the most
 # recent to the oldest.
 select_events <- function(hist_lst, from, to) {
-  sel0 <- map(hist_lst, "year") %>% unlist %>% as.Date()
+  sel0 <- map(hist_lst, "year") %>% unlist() %>% as.Date()
   sel0 <- sel0 > as.Date(paste0(from, "-01-01")) &
     sel0 <= as.Date(paste0(to, "-12-31"))
   event_lst <- hist_lst[sel0]
@@ -40,16 +40,17 @@ old_vect <- function(vect, history_lst, from, to) {
       # select one event
       event <- event_lst[[i]]
       if (grepl("complexe merge", event$event)) {
-        vect <- vect %>% c(., event$before, event$after) %>% unlist %>% unique
+        vect <- vect %>% c(., event$before, event$after) %>% unlist() %>%
+          unique()
       } else {
         vect <- vect %>% grep(paste0(event$after, collapse = "|"), .,
                               value = TRUE, invert = TRUE) %>%
-          c(., event$before) %>% unlist %>% unique
+          c(., event$before) %>% unlist() %>% unique()
       }
     }
-    vect %<>% sort
+    vect %<>% sort()
   } else {
-    vect %>% as.character %>% unique %>% sort
+    vect %>% as.character() %>% unique() %>% sort()
   }
   vect
 }
@@ -61,8 +62,8 @@ old_vect <- function(vect, history_lst, from, to) {
 list_year_province <- function(vect, history_lst, from = "1960", to = "2020") {
   # select the year concerned
   from <-  paste0(from, "-01-01")
-  sel_year <- history_lst %>% map("year") %>% c(from, .) %>% unlist %>%
-    unique %>% .[which(. < to & . >= from)] %>% lubridate::year(.)
+  sel_year <- history_lst %>% map("year") %>% c(from, .) %>% unlist() %>%
+    unique() %>% .[which(. < to & . >= from)] %>% lubridate::year(.)
   # make the list
   total_lst <- lapply(seq_along(sel_year), function (x) {
     old_v <- old_vect(vect, history_lst, from = sel_year[x], to = to)
@@ -79,9 +80,9 @@ actual_prov <- function(file, hash) {
              stringi::stri_escape_unicode() %>%
              hash[.]) %>%
     select(province) %>%
-    unlist %>%
-    unique %>%
-    sort
+    unlist() %>%
+    unique() %>%
+    sort()
 }
 
 # Make data --------------------------------------------------------------------
