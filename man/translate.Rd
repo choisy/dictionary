@@ -15,7 +15,7 @@ translate(vect, country, level)
 3 for city/commune.}
 }
 \value{
-String vector of the same length as input in `vect` argument
+String vector of the same length as input in \code{vect} argument
 }
 \description{
 Translates string vector in English without accent using dictionary created

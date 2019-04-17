@@ -28,15 +28,13 @@
 #' # Allows to check the spatial expression is corresponding to the year
 #' match_pattern(df, "province", vn_province_year)
 #'
-#'
-#' @importFrom dplyr select %>%
 #' @export
 #'
 match_pattern <- function(df, colname, lst_pattern, strict = TRUE){
-  vect <- df %>% select(colname) %>% unlist
+  vect <- unlist(df[, colname])
   for (i in seq_along(lst_pattern)) {
-    if (setdiff(vect, lst_pattern[[i]]) %>% length == 0) {
-      if (strict == TRUE & setdiff(lst_pattern[[i]], vect) %>% length == 0) {
+    if (length(setdiff(vect, lst_pattern[[i]])) == 0) {
+      if (strict == TRUE & length(setdiff(lst_pattern[[i]], vect)) == 0) {
         return(names(lst_pattern[i]))
       } else if (strict == FALSE) {
         return(names(lst_pattern[i]))

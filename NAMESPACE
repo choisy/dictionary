@@ -3,6 +3,4 @@
 export(match_pattern)
 export(translate)
 importFrom(countrycode,countrycode)
-importFrom(dplyr,"%>%")
-importFrom(dplyr,select)
 importFrom(stringi,stri_escape_unicode)

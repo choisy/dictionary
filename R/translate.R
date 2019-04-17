@@ -11,7 +11,7 @@
 #' @importFrom stringi stri_escape_unicode
 #' @importFrom countrycode countrycode
 #'
-#' @return String vector of the same length as input in `vect` argument
+#' @return String vector of the same length as input in \code{vect} argument
 #' @export
 #'
 #' @examples
@@ -21,8 +21,8 @@ translate <- function(vect, country, level){
   # translates vect in UNICODE
   vect <-  stringi::stri_escape_unicode(vect)
   # get correct dictionary
-  country <- countrycode::countrycode(country, "country.name", "iso2c") %>%
-    tolower
+  country <- countrycode::countrycode(country, "country.name", "iso2c")
+  country <- tolower(country)
    # extract level
   nlev <- c("province" = 1, "district" = 2, "commune" = 3)
   level <- names(nlev)[level]
