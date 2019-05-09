@@ -83,19 +83,24 @@ id_province <- function(vect, extractor, hash) {
 # after (2) the event. Hash for the translation of the district name in a
 # standardized format
 id_district <- function(vect, extractor, hash_p, hash_d) {
-  vect %>% split_event(.) %>% map(extractor) %>% unlist() %>%
-    strsplit(";") %>% map(strsplit, "[[:digit:]],") %>% map(unlist) %>%
-    map(keep, is_notnumeric) %>% flatten() %>%
-    data_frame(province = unlist(.)) %>%
-    mutate(district = str_extract(province, "\\(.+\\)") %>%
-             map(paste, collapse = ", ") %>%
-             gsub("\\(|\\)", "", .) %>% strsplit(", ") %>%
-             map(translate, hash_d),
-           province = str_extract(province, ".*(?=(\\(.+\\)))|.*") %>%
-             gsub(" in ", "", .) %>%
-             map(translate, hash_p) %>% unlist()) %>%
-    select(province, district) %>%
-    list()
+  lst <- lapply(split_event(vect), "[", extractor)
+  lst <- strsplit(unlist(lst), ";|[[:digit:]],")
+  lst <- unlist(lst)
+  lst <- lst[which(lst != "" & !grepl("In ", lst))]
+  lst <- data.frame(province = lst)
+
+  district <- str_extract(lst$province, "\\(.+\\)")
+  district <- gsub("\\(|\\)", "", district)
+  district <- strsplit(district, ", ")
+  district <- lapply(district, function(x) translate(x, hash_d))
+
+  province <- str_extract(lst$province, ".*(?=(\\(.+\\)))|.*")
+  province <- gsub(" in ", "", province)
+  province <- lapply(province, function(x) translate(x, hash_p))
+  province <- rep(province, lapply(district, length))
+
+  df <- data.frame(province = unlist(province), district = unlist(district))
+  list(df)
 }
 
 # From a text file (see prerequisite), make a list of list of 4 elements:
