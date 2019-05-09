@@ -62,12 +62,12 @@ vect_version <- function(vect) {
 
   vect %<>% as.character()
   vect <- vect_case(vect)
-  vect_space <- vect %>% gsub(" ", "", .) %>% vect_case
-  vect_ <- vect %>% gsub("_", " ", .) %>% vect_case
+  vect_space <- vect %>% gsub(" ", "", .) %>% vect_case()
+  vect_ <- vect %>% gsub("_", " ", .) %>% vect_case()
 
   vect_vers <- c(vect, vect_space, vect_) %>%
-    na.omit %>%
-    unique %>%
+    na.omit() %>%
+    unique() %>%
     stringi::stri_escape_unicode()
 
 }
@@ -83,7 +83,7 @@ vect_version <- function(vect) {
 alternate_name <- function(df, colnames, sep) {
 
   original_name <-
-    select(df, one_of(colnames)) %>% unlist %>% as.character %>%
+    select(df, one_of(colnames)) %>% unlist() %>% as.character() %>%
     strsplit(sep) %>% unlist() %>%
     c(gsub("Khoueng | Prefecture| Province|Changwat |Tinh |Thanh Pho ",
            "", .))
@@ -102,7 +102,7 @@ alternate_name <- function(df, colnames, sep) {
     }
   }
 
-  original_name %<>% vect_version
+  original_name %<>% vect_version()
 }
 
 # From a data frame (df), extract the name in one column (names_transl) remove

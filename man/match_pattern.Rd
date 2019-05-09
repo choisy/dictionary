@@ -41,5 +41,4 @@ df <- getid(dengue, from = 1980, to = 1982) # get data for dengue for Vietnam
 # Allows to check the spatial expression is corresponding to the year
 match_pattern(df, "province", vn_province_year)
 
-
 }

@@ -62,8 +62,8 @@ id_event <- function(vect) {
 id_date <- function(vect) {
   gsub("[^[:digit:]]", "", vect) %>%
     paste0(., "-01-01") %>%
-    as.Date %>%
-    as.character
+    as.Date() %>%
+    as.character()
 }
 
 # Function to identify the province name and return a vector of character,
@@ -72,7 +72,7 @@ id_date <- function(vect) {
 # standardized format
 id_province <- function(vect, extractor, hash) {
   vect %>%
-    split_event(.) %>% map(extractor) %>% unlist %>%
+    split_event(.) %>% map(extractor) %>% unlist() %>%
     strsplit(";") %>% map(str_extract, ".*(?=(\\(.+\\)))|.*") %>%
     map(strsplit, ", ") %>% map(unlist) %>% map(keep, is_notnumeric) %>%
     map(translate, hash) %>% map(as.list)
