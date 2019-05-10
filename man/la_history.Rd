@@ -13,13 +13,13 @@ List of 2 lists containing 6 elements:
  \itemize{
    \item \code{year}: date of event in character in format "YYYY-mm-dd"
    \item \code{event}: character vector of one object either split, merge,
-   complexe split, complexe merge or rename
+   complex split, complex merge or rename
    \item \code{before}: list of name of the province(s) before the event
    \item \code{after}: list of name of the province(s) after the event
    \item \code{d.before}: details of the previous districts in the province
-   associated concerned by the complexe event
+   associated concerned by the complex event
    \item \code{a.before}: details of the districts in the province
-   associated concerned after the complexe event
+   associated concerned after the complex event
 }
 }
 \keyword{datasets}

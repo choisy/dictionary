@@ -29,6 +29,8 @@ The functions accepts two types of entry for translation. \cr
 vector, but only for Vietnam, Cambodia and Thailand.
 2 . You can directly input a named vector in UNICODE containing the
 translation.
+If the argument \code{hash} is NULL, the vector will be return encoded in
+UNICODE.
 }
 \examples{
 # to translate province name of Vietnam in English

@@ -141,16 +141,16 @@ The package contains also a list by country of the history of change in administ
 str(th_history)
 ```
 
-It's List of 2 lists containing 4 or 6 elements, depending of the event. If the history contains `complexe` event, meaning some splits or merges events where the districts are detailed, two slots with these detailed are added :
+It's List of 2 lists containing 4 or 6 elements, depending of the event. If the history contains `complex` event, meaning some splits or merges events where the districts are detailed, two slots with these detailed are added :
 
 * `year`: date of event in character in format "YYYY-mm-dd"
-* `event`: character vector of one object either split, merge, complexe split, complexe merge or rename
+* `event`: character vector of one object either split, merge, complex split, complex merge or rename
 * `before`: list of name of the province(s) before the event
 * `after`: list of name of the province(s) after the event
-* `d.before`: details of the previous districts in the province associated concerned by the complexe event
-* `d.after`: details of the districts in the province associated concerned after the complexe event 
+* `d.before`: details of the previous districts in the province associated concerned by the complex event
+* `d.after`: details of the districts in the province associated concerned after the complex event 
   
-For example, the Laos history contains complexe event:
+For example, the Laos history contains complex event:
 ```{r}
 la_history
 ```

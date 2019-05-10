@@ -14,12 +14,12 @@ library(stringr)  # for "str_extract" and "str_detect"
 # PROVINCE(s): if multiple, separated by ";"
 # If the details of the split/merge event if available at district level, the
 # district should be written in (), separated by "," and the event should be
-# written complexe EVENT
+# written complex EVENT
 # DATE: written by year as "YYYY" or can be a full date written as "YYYY-mm_dd"
 # EVENT: choose betwrepreen: split(s)/merge/rename(s)
 #
 # For example: In 1992, Hau Giang splits in Can Tho; Soc Trang.
-# For example: In 2013, Vientiane (Longsan, Xaysomboun, Phun, Hom); Xiengkhuang (Thathon) complexe splits in Xaisomboun.
+# For example: In 2013, Vientiane (Longsan, Xaysomboun, Phun, Hom); Xiengkhuang (Thathon) complex splits in Xaisomboun.
 
 # Functions --------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ split_event <- function(vect){
   vect %<>% gsub("splits", "split", .) %>%
     gsub("renames", "rename", .) %>%
     gsub("merges", "merge", .) %>%
-    strsplit(split = "split|merge|rename|complexe split|complexe merge")
+    strsplit(split = "split|merge|rename|complex split|complex merge")
 }
 
 # Function to translate the Vietnase province names in UNICODE and English.
@@ -52,8 +52,8 @@ translate <- function(vect, hash) {
 
 # Function to identify the event and return a vector of character
 id_event <- function(vect) {
-  ifelse(agrepl("complexe split", vect), "complexe split",
-         ifelse(agrepl("complexe merge", vect), "complexe merge",
+  ifelse(agrepl("complex split", vect), "complex split",
+         ifelse(agrepl("complex merge", vect), "complex merge",
                 ifelse(agrepl("split", vect), "split",
                        ifelse(agrepl("merge", vect), "merge", "rename"))))
 }
@@ -120,7 +120,7 @@ make_history <-  function(file, hash, d.hash) {
                before = id_province(V1, 1, hash),
                after = id_province(V1, 2, hash))
 
-  if (any(df$event %>% str_detect("complexe"))) {
+  if (any(df$event %>% str_detect("complex"))) {
     df %<>% mutate(
       d.before = id_district(V1, 1, hash, d.hash),
       d.after = id_district(V1, 2, hash, d.hash))

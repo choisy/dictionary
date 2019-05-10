@@ -8,6 +8,8 @@
 #' vector, but only for Vietnam, Cambodia and Thailand.
 #' 2 . You can directly input a named vector in UNICODE containing the
 #' translation.
+#' If the argument \code{hash} is NULL, the vector will be return encoded in
+#' UNICODE.
 #'
 #' @param vect a string chracter vector.
 #' @param hash a named UNICODE vector containing the translation
@@ -48,7 +50,6 @@ translate <- function(vect, hash, country = NULL, level = NULL) {
   }
   # translates vect in UNICODE
   vect <-  stringi::stri_escape_unicode(vect)
-  vect <- hash[vect]
+  if (!is.null(hash)) vect <- hash[vect]
   vect
-
 }
