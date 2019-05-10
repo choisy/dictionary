@@ -51,5 +51,6 @@ translate <- function(vect, hash, country = NULL, level = NULL) {
   # translates vect in UNICODE
   vect <-  stringi::stri_escape_unicode(vect)
   if (!is.null(hash)) vect <- hash[vect]
+  vect <- as.character(vect)
   vect
 }
