@@ -4,10 +4,12 @@
 \alias{translate}
 \title{Translates Vector in English Without Accent}
 \usage{
-translate(vect, country, level)
+translate(vect, hash, country = NULL, level = NULL)
 }
 \arguments{
 \item{vect}{a string chracter vector.}
+
+\item{hash}{a named UNICODE vector containing the translation}
 
 \item{country}{a character name of a country.}
 
@@ -21,7 +23,16 @@ String vector of the same length as input in \code{vect} argument
 Translates string vector in English without accent using dictionary created
 and stored in the package by country and level of administrative boundaries.
 }
+\details{
+The functions accepts two types of entry for translation. \cr
+1. You can use the \code{country} and \code{level} information to translate
+vector, but only for Vietnam, Cambodia and Thailand.
+2 . You can directly input a named vector in UNICODE containing the
+translation.
+}
 \examples{
 # to translate province name of Vietnam in English
-translate(c("AnGiang", "Ha Noi"), "Vietnam", 1)
+translate(c("AnGiang", "Ha Noi"), vn_province)
+# or
+translate(c("AnGiang", "Ha Noi"), country = "Vietnam", level = 1)
 }
