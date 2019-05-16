@@ -34,7 +34,7 @@ UNICODE.
 }
 \examples{
 # to translate province name of Vietnam in English
-translate(c("AnGiang", "Ha Noi"), vn_province)
+translate(c("AnGiang", "Ha Noi"), vn_admin1)
 # or
 translate(c("AnGiang", "Ha Noi"), country = "Vietnam", level = 1)
 }

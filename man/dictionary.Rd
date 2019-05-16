@@ -4,9 +4,9 @@
 \name{dictionary}
 \alias{dictionary}
 \alias{dictionary-package}
-\title{dictionary: Dictionary of Vietnamese Provinces Names}
+\title{dictionary: Dictionary of Vietnamese admin1 Names}
 \description{
-This package contains a dictionary for Vietnamese provinces names, districts
-names and communes names, useful to ensure consistency between different data
- packages using vietnamese provinces, districts and/or communes.
+This package contains a dictionary for Vietnamese admin1 names, admin2
+names and admin3 names, useful to ensure consistency between different data
+ packages using vietnamese admin1, districts and/or admin3.
 }

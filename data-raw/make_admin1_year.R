@@ -5,10 +5,10 @@ library(purrr)    # for "map"
 # Prerequisite -----------------------------------------------------------------
 
 # Dictionary translate:
-data(la_province)
-data(kh_province)
-data(th_province)
-data(vn_province)
+data(la_admin1)
+data(kh_admin1)
+data(th_admin1)
+data(vn_admin1)
 
 # Dictionary history:
 data(la_history)
@@ -30,12 +30,12 @@ select_events <- function(hist_lst, from, to) {
 }
 
 # From a time frame inputed in the function with the parameters `from` and `to`,
-# recreate vector of province names of oldest event.
+# recreate vector of admin1 names of oldest event.
 old_vect <- function(vect, history_lst, from, to) {
   # Select event
   event_lst <- select_events(history_lst, from = from, to = to)
   if (length(event_lst) != 0) {
-    # Recreate province list
+    # Recreate admin1 list
     for (i in seq_along(event_lst)) {
       # select one event
       event <- event_lst[[i]]
@@ -55,11 +55,11 @@ old_vect <- function(vect, history_lst, from, to) {
   vect
 }
 
-# From a vector of province name `vect`, create a list, by year of event (from
+# From a vector of admin1 name `vect`, create a list, by year of event (from
 # `history_lst`) and by a time frame (`from` and `to` parameters), of
-# province names by year of change. Returns a list of named vector, the names
+# admin1 names by year of change. Returns a list of named vector, the names
 # are the year of event.
-list_year_province <- function(vect, history_lst, from = "1960", to = "2020") {
+list_year_admin1 <- function(vect, history_lst, from = "1960", to = "2020") {
   # select the year concerned
   from <-  paste0(from, "-01-01")
   sel_year <- history_lst %>% map("year") %>% c(from, .) %>% unlist() %>%
@@ -72,14 +72,14 @@ list_year_province <- function(vect, history_lst, from = "1960", to = "2020") {
 }
 
 # From the gadm file of level 1 in a RDS format, extract the name of the actual
-# province name, translate in English, standardized format
+# admin1 name, translate in English, standardized format
 actual_prov <- function(file, hash) {
   vect <- readRDS(file) %>%
     select(NAME_1) %>%
-    mutate(province = NAME_1 %>% as.character %>%
+    mutate(admin1 = NAME_1 %>% as.character %>%
              stringi::stri_escape_unicode() %>%
              hash[.]) %>%
-    select(province) %>%
+    select(admin1) %>%
     unlist() %>%
     unique() %>%
     sort()
@@ -87,20 +87,20 @@ actual_prov <- function(file, hash) {
 
 # Make data --------------------------------------------------------------------
 
-la_actual <- actual_prov("data-raw/gadm_data/gadm36_LAO_1_sf.rds", la_province)
-kh_actual <- actual_prov("data-raw/gadm_data/gadm36_KHM_1_sf.rds", kh_province)
-th_actual <- actual_prov("data-raw/gadm_data/gadm36_THA_1_sf.rds", th_province)
-vn_actual <- actual_prov("data-raw/gadm_data/gadm36_VNM_1_sf.rds", vn_province)
+la_actual <- actual_prov("data-raw/gadm_data/gadm36_LAO_1_sf.rds", la_admin1)
+kh_actual <- actual_prov("data-raw/gadm_data/gadm36_KHM_1_sf.rds", kh_admin1)
+th_actual <- actual_prov("data-raw/gadm_data/gadm36_THA_1_sf.rds", th_admin1)
+vn_actual <- actual_prov("data-raw/gadm_data/gadm36_VNM_1_sf.rds", vn_admin1)
 
-la_province_year <- list_year_province(la_actual, la_history, from = "1997")
-kh_province_year <- list_year_province(kh_actual, kh_history, from = "1994")
-th_province_year <- list_year_province(th_actual, th_history, from = "1967")
-vn_province_year <- list_year_province(vn_actual, vn_history, from = "1979")
+la_admin1_year <- list_year_admin1(la_actual, la_history, from = "1997")
+kh_admin1_year <- list_year_admin1(kh_actual, kh_history, from = "1994")
+th_admin1_year <- list_year_admin1(th_actual, th_history, from = "1967")
+vn_admin1_year <- list_year_admin1(vn_actual, vn_history, from = "1979")
 
 # Writing to disk --------------------------------------------------------------
 
-devtools::use_data(la_province_year, kh_province_year,
-                   th_province_year, vn_province_year, overwrite = TRUE)
+usethis::use_data(la_admin1_year, kh_admin1_year,
+                   th_admin1_year, vn_admin1_year, overwrite = TRUE)
 
 # Remove everything ------------------------------------------------------------
 

@@ -25,7 +25,7 @@
 #'
 #' @examples
 #' # to translate province name of Vietnam in English
-#' translate(c("AnGiang", "Ha Noi"), vn_province)
+#' translate(c("AnGiang", "Ha Noi"), vn_admin1)
 #' # or
 #' translate(c("AnGiang", "Ha Noi"), country = "Vietnam", level = 1)
 translate <- function(vect, hash, country = NULL, level = NULL) {
@@ -44,7 +44,7 @@ translate <- function(vect, hash, country = NULL, level = NULL) {
            Cambodia, Laos, Thailand and Vietnam")
     }
     # extract level
-    nlev <- c("province" = 1, "district" = 2, "commune" = 3)
+    nlev <- c("admin1" = 1, "admin2" = 2, "admin3" = 3)
     level <- names(nlev)[level]
     hash <- get(paste0(country, "_", level))
   }

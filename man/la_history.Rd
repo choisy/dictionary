@@ -3,7 +3,7 @@
 \docType{data}
 \name{la_history}
 \alias{la_history}
-\title{Lao Provinces Boundaries History (since 1993)}
+\title{Lao admin1 unit Boundaries History (since 1993)}
 \format{An object of class \code{list} of length 2.}
 \usage{
 data(la_history)
@@ -14,11 +14,11 @@ List of 2 lists containing 6 elements:
    \item \code{year}: date of event in character in format "YYYY-mm-dd"
    \item \code{event}: character vector of one object either split, merge,
    complex split, complex merge or rename
-   \item \code{before}: list of name of the province(s) before the event
-   \item \code{after}: list of name of the province(s) after the event
-   \item \code{d.before}: details of the previous districts in the province
+   \item \code{before}: list of name of the admin1(s) before the event
+   \item \code{after}: list of name of the admin1(s) after the event
+   \item \code{d.before}: details of the previous admin2 units in the admin1
    associated concerned by the complex event
-   \item \code{a.before}: details of the districts in the province
+   \item \code{a.before}: details of the admin2 units in the admin1
    associated concerned after the complex event
 }
 }

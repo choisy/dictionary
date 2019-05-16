@@ -20,8 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-This package contains a dictionary for Vietnamese provinces names, districts names and communes names, useful to ensure consistency between different data packages using Vietnamese provinces, districts and/or communes. It also contains dictionaries for the Camdodian, Lao and Thai provinces names and Lao districts.
-The package also contains the list names of the provinces ordered by year. These lists contain for each of change, the name of the "new" provinces in English. We also have a list by country (Vietnam, Laos, Cambodge, Thailand) of the history of change in administrative boundaries
+This package contains a dictionary for Vietnamese provinces names, admin2 names and admin3 names, useful to ensure consistency between different data packages using Vietnamese provinces, admin2 and/or admin3. It also contains dictionaries for the Camdodian, Lao and Thai admin1 names and Lao admin2.
+The package also contains the list names of the admin1 ordered by year. These lists contain for each of change, the name of the "new" admin1 in English. We also have a list by country (Vietnam, Laos, Cambodge, Thailand) of the history of change in administrative boundaries
 
 
 ```{r eval=F}
@@ -40,9 +40,9 @@ library(dictionary)
 
 We can use some examples to demonstrate our package: 
 
-### Communes
+### admin3
 
-We create a vector containing some communes names in Vietnamese:
+We create a vector containing some admin3 names in Vietnamese:
 
 ```{r}
 communes_vn <- c("Xã Nghĩa Lợi", "Xã Nam Mẫu", "Xã Xuân Vinh",
@@ -50,43 +50,43 @@ communes_vn <- c("Xã Nghĩa Lợi", "Xã Nam Mẫu", "Xã Xuân Vinh",
                  "Xã Nội Hoàng", "Xã Điện Trung", "Xã Hoàng Đồng", "Xã Nàn Sán")
 ```
 
-We can use the `character vector` `communes` to translate the Vietnamese vector but first the vector should be encode in UNICODE to avoid encoding trouble. For that, we use the `stringi` package:
+We can use the `character vector` `admin3` to translate the Vietnamese vector but first the vector should be encode in UNICODE to avoid encoding trouble. For that, we use the `stringi` package:
 
 ```{r}
 uni_communes_vn <- stringi::stri_escape_unicode(communes_vn)
 ```
 
-And now, we can use the vector `communes`
+And now, we can use the vector `admin3`
 
 ```{r}
-commune_transl <- communes[uni_communes_vn]
+admin3_transl <- admin3[uni_communes_vn]
 ```
 
 We obtain a `character vector`, with the original names as `name` and the translation as `value`:   
 
 ```{r}
-str(commune_transl)
-commune_transl
+str(admin3_transl)
+admin3_transl
 ```
 
-### Districts and Provinces
+### admin2 and admin1
 
 Each dictionary is a names vector:
 
 ```{r}
 # For Vietnam:
-str(vn_province)
-str(vn_district)
+str(vn_admin1)
+str(vn_admin2)
 # For Laos:
-str(la_province)
-str(la_district)
+str(la_admin1)
+str(la_admin2)
 # For Cambodge:
-str(kh_province)
+str(kh_admin1)
 # For Thailand:
-str(th_province)
+str(th_admin1)
 ```
 
-To use them, it's the same principle for the provinces and the districts:
+To use them, it's the same principle for the admin1 and the admin2:
 We create two vectors that needed to be translate: 
 
 ```{r}
@@ -98,7 +98,7 @@ provinces_vn <- c("Ninh Bình", "Hà Nội", "An Giang", "Bình Phước", "Lào
                   "Phú Thọ", "Bắc Giang", "Vĩnh Phúc", "Bạc Liêu", "Hà Giang")
 ```
 
-But, we use the `character vector` `districts` and `provinces` contains in the package to translate the two vectors after changing the encoding to UNICODE:
+But, we use the `character vector` `admin2` and `admin1` contains in the package to translate the two vectors after changing the encoding to UNICODE:
 
 ```{r}
 uni_districts_vn <- stringi::stri_escape_unicode(districts_vn)
@@ -106,31 +106,31 @@ uni_provinces_vn <- stringi::stri_escape_unicode(provinces_vn)
 ```
 
 ```{r}
-district_transl <- vn_district[uni_districts_vn]
-province_transl <- vn_province[uni_provinces_vn]
+admin2_transl <- vn_admin2[uni_districts_vn]
+admin1_transl <- vn_admin1[uni_provinces_vn]
 ```
 
 We obtain two `character vectors`, with the original names as `name` and the translation as `value`:
 
 ```{r}
-str(district_transl)
-district_transl
-str(province_transl)
-province_transl
+str(admin2_transl)
+admin2_transl
+str(admin1_transl)
+admin1_transl
 ```
 
-## List of province per year
+## List of admin1 per year
 
 It's a `list` object : 
 
 ```{r}
-str(vn_province_year)
+str(vn_admin1_year)
 ```
 
 To see a particular year (for example 1997) :
 
 ```{r}
-vn_province_year$`1997`
+vn_admin1_year$`1997`
 ```
 
 ## History
@@ -141,14 +141,14 @@ The package contains also a list by country of the history of change in administ
 str(th_history)
 ```
 
-It's List of 2 lists containing 4 or 6 elements, depending of the event. If the history contains `complex` event, meaning some splits or merges events where the districts are detailed, two slots with these detailed are added :
+It's List of 2 lists containing 4 or 6 elements, depending of the event. If the history contains `complex` event, meaning some splits or merges events where the admin2 are detailed, two slots with these detailed are added :
 
 * `year`: date of event in character in format "YYYY-mm-dd"
 * `event`: character vector of one object either split, merge, complex split, complex merge or rename
-* `before`: list of name of the province(s) before the event
-* `after`: list of name of the province(s) after the event
-* `d.before`: details of the previous districts in the province associated concerned by the complex event
-* `d.after`: details of the districts in the province associated concerned after the complex event 
+* `before`: list of name of the admin1(s) before the event
+* `after`: list of name of the admin1(s) after the event
+* `d.before`: details of the previous admin2 in the admin1 associated concerned by the complex event
+* `d.after`: details of the admin2 in the admin1 associated concerned after the complex event 
   
 For example, the Laos history contains complex event:
 ```{r}
@@ -157,18 +157,18 @@ la_history
 
 ## Function
 
-In the package, the function `match_pattern` with the `XX_province_year` can be used to return the year of expression of the province in a data frame.
+In the package, the function `match_pattern` with the `XX_admin1_year` can be used to return the year of expression of the admin1 in a data frame.
 
-For example, if we use a data frame containing data expressed by province: 
+For example, if we use a data frame containing data expressed by admin1: 
 ```{r}
 data <- data.frame(
-  province = unique(grep("Xaisomboun", la_province, value = TRUE, invert = TRUE)),
-  value = sample(1:3, length(unique(la_province)[-1]), T))
+  admin1 = unique(grep("Xaisomboun", la_admin1, value = TRUE, invert = TRUE)),
+  value = sample(1:3, length(unique(la_admin1)[-1]), T))
 head(data)
 ```
 
 We can now, used the `match_pattern` function:
 ```{r}
-match_pattern(data, "province", la_province_year)
-# the data are expressed with the province definition of 2006
+match_pattern(data, "admin1", la_admin1_year)
+# the data are expressed with the admin1 definition of 2006
 ```
