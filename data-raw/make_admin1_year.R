@@ -39,7 +39,7 @@ old_vect <- function(vect, history_lst, from, to) {
     for (i in seq_along(event_lst)) {
       # select one event
       event <- event_lst[[i]]
-      if (grepl("complex merge", event$event)) {
+      if (grepl("complex split", event$event)) {
         vect <- vect %>% c(., event$before, event$after) %>% unlist() %>%
           unique()
       } else {
