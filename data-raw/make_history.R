@@ -76,6 +76,7 @@ id_admin1 <- function(vect, extractor, hash) {
   admin1 <- lst
   admin1 <- lapply(admin1, function(x) x[which(!grepl("In ", x))])
   admin1 <- lapply(admin1, translate_v, hash)
+  admin1 <- lapply(admin1, as.list)
 }
 
 # Function to identify the admin2s name and return a vector of character,
@@ -117,7 +118,7 @@ id_admin2 <- function(vect, extractor, hash_p, hash_d) {
 # 'd.after' : name of the admin2s concerned by the event (only for complex event)
 make_history <-  function(file, hash, d.hash) {
 
-  df <- read.delim(file, header = FALSE)
+  df <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
   df[["year"]] <- id_date(df$V1)
   df[["event"]] <- id_event(df$V1)
   df[["before"]] <- id_admin1(df$V1, 1, hash)
