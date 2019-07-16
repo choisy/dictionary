@@ -191,13 +191,13 @@ la_admin1 <- add_dictionary(
     hash = la_admin1)
 df <- read.csv("data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv",
                stringsAsFactors = FALSE)
-df <- df[which(df$CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"),]
+df <- df[which(df$CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"), ]
 la_admin1 <- create_dictionary(df =  df, names_transl = "Admin1Name_Preferred",
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
     hash = la_admin1)
 
 la_admin2 <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds")
-la_admin2 <- create_dictionary(la_admin2,names_transl = "NAME_2",
+la_admin2 <- create_dictionary(la_admin2, names_transl = "NAME_2",
                                names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
                                sep = "\\|")
 la_admin2 <- add_dictionary(transl = c("Longsane", "Thathom"),

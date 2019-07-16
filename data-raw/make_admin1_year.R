@@ -68,7 +68,7 @@ list_year_admin1 <- function(vect, history_lst, from = "1960", to = "2020") {
   sel_year <- sort(format(as.Date(sel_year), "%Y"))
   # make the list
   total_lst <- lapply(seq_along(sel_year), function (x) {
-    old_v <- old_vect(vect, history_lst, from = sel_year[x], to = to)
+    old_vect(vect, history_lst, from = sel_year[x], to = to)
   })
   total_lst <- setNames(total_lst,
                         paste(sel_year, c(sel_year[-1], to), sep = "-"))
@@ -80,7 +80,7 @@ list_year_admin1 <- function(vect, history_lst, from = "1960", to = "2020") {
 actual_prov <- function(file, hash) {
   df <- readRDS(file)
   vect <- df[, "NAME_1"]
-  vect <- translate(vect,hash)
+  vect <- translate(vect, hash)
   sort(unique(vect))
 }
 

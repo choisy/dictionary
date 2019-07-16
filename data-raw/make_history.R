@@ -130,7 +130,7 @@ make_history <-  function(file, hash, d.hash) {
   }
 
   df <- df[, - which(names(df) == "V1")]
-  lapply(seq_len(nrow(df)), function(x) as.list(unlist(df[x,], FALSE)))
+  lapply(seq_len(nrow(df)), function(x) as.list(unlist(df[x, ], FALSE)))
 }
 
 # Data -------------------------------------------------------------------------
