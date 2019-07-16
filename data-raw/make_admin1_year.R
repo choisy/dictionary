@@ -1,6 +1,5 @@
 # Packages and System ----------------------------------------------------------
-library(magrittr) # for " %>% ", " %<>% "
-library(purrr)    # for "map"
+library(dictionary)  # for "translate"
 
 # Prerequisite -----------------------------------------------------------------
 
@@ -22,7 +21,7 @@ data(vn_history)
 # parameters `from` and `to` and returns a list of event ordered from the most
 # recent to the oldest.
 select_events <- function(hist_lst, from, to) {
-  sel0 <- map(hist_lst, "year") %>% unlist() %>% as.Date()
+  sel0 <- as.Date(sapply(hist_lst, "[[", "year"))
   sel0 <- sel0 > as.Date(paste0(from, "-01-01")) &
     sel0 <= as.Date(paste0(to, "-12-31"))
   event_lst <- hist_lst[sel0]
@@ -40,17 +39,19 @@ old_vect <- function(vect, history_lst, from, to) {
       # select one event
       event <- event_lst[[i]]
       if (grepl("complex split", event$event)) {
-        vect <- vect %>% c(., event$before, event$after) %>% unlist() %>%
-          unique()
+        vect <- unlist(c(vect, event$before, event$after))
+        vect <- unique(vect)
       } else {
-        vect <- vect %>% grep(paste0(event$after, collapse = "|"), .,
-                              value = TRUE, invert = TRUE) %>%
-          c(., event$before) %>% unlist() %>% unique()
+        vect <-  grep(paste0(event$after, collapse = "|"), vect, value = TRUE,
+                      invert = TRUE)
+        vect <- unlist(c(vect, event$before))
+        vect <- unique(vect)
       }
     }
-    vect %<>% sort()
+    vect <- sort(vect)
   } else {
-    vect %>% as.character() %>% unique() %>% sort()
+    vect <- unique(as.character(vect))
+    vect <- sort(vect)
   }
   vect
 }
@@ -62,27 +63,25 @@ old_vect <- function(vect, history_lst, from, to) {
 list_year_admin1 <- function(vect, history_lst, from = "1960", to = "2020") {
   # select the year concerned
   from <-  paste0(from, "-01-01")
-  sel_year <- history_lst %>% map("year") %>% c(from, .) %>% unlist() %>%
-    unique() %>% .[which(. < to & . >= from)] %>% lubridate::year(.)
+  sel_year <- unique(c(sapply(history_lst, "[[", "year"), from))
+  sel_year <- sel_year[which(sel_year < to & sel_year >= from)]
+  sel_year <- sort(format(as.Date(sel_year), "%Y"))
   # make the list
   total_lst <- lapply(seq_along(sel_year), function (x) {
     old_v <- old_vect(vect, history_lst, from = sel_year[x], to = to)
-  }) %>%
-    setNames(sel_year %>% paste(c(sel_year[-1], to), sep = "-"))
+  })
+  total_lst <- setNames(total_lst,
+                        paste(sel_year, c(sel_year[-1], to), sep = "-"))
+  total_lst
 }
 
 # From the gadm file of level 1 in a RDS format, extract the name of the actual
 # admin1 name, translate in English, standardized format
 actual_prov <- function(file, hash) {
-  vect <- readRDS(file) %>%
-    select(NAME_1) %>%
-    mutate(admin1 = NAME_1 %>% as.character %>%
-             stringi::stri_escape_unicode() %>%
-             hash[.]) %>%
-    select(admin1) %>%
-    unlist() %>%
-    unique() %>%
-    sort()
+  df <- readRDS(file)
+  vect <- df[, "NAME_1"]
+  vect <- translate(vect,hash)
+  sort(unique(vect))
 }
 
 # Make data --------------------------------------------------------------------
