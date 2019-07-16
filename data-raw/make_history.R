@@ -1,8 +1,5 @@
 # Packages and System ----------------------------------------------------------
-library(magrittr) # for " %>% "
-library(dplyr)    # for "select" and "mutate"
-library(purrr)    # for "map", "transpose" and "keep"
-library(stringr)  # for "str_extract" and "str_detect"
+library(dictionary) # for "translate"
 
 # Prerequisite -----------------------------------------------------------------
 
@@ -33,22 +30,18 @@ is_notnumeric <- function(vect) {
 
 # Splits the vector by `EVENT`
 split_event <- function(vect){
-  vect %<>% gsub("splits", "split", .) %>%
-    gsub("renames", "rename", .) %>%
-    gsub("merges", "merge", .) %>%
-    strsplit(split = "split|merge|rename|complex split|complex merge")
+  vect <- gsub("splits", "split", vect)
+  vect <- gsub("renames", "rename", vect)
+  vect <- gsub("merges", "merge", vect)
+  strsplit(vect, split = "split|merge|rename|complex split|complex merge")
 }
 
 # Function to translate the Vietnase admin1 names in UNICODE and English.
-translate <- function(vect, hash) {
-  vect %<>%
-    gsub(" in ", "", .) %>%
-    gsub("\\.", "", .) %>%
-    gsub(" $", "", .) %>%
-    gsub("^ ", "", .) %>%
-    stringi::stri_escape_unicode() %>%
-    hash[.] %>%
-    as.character()
+translate_v <- function(vect, hash) {
+  vect <- gsub(" in ", "", vect)
+  vect <- gsub("\\.", "", vect)
+  vect <- trimws(vect)
+  translate(vect, hash)
 }
 
 # Function to identify the event and return a vector of character
@@ -61,10 +54,9 @@ id_event <- function(vect) {
 
 # Function to identify the date and return a vector of character
 id_date <- function(vect) {
-  gsub("[^[:digit:]]", "", vect) %>%
-    paste0(., "-01-01") %>%
-    as.Date() %>%
-    as.character()
+  vect <- gsub("[^[:digit:]]", "", vect)
+  vect <- paste0(vect, "-01-01")
+  vect <- as.character(as.Date(vect))
 }
 
 # Function to identify the admin1 name and return a vector of character,
@@ -72,11 +64,18 @@ id_date <- function(vect) {
 # after (2) the event. Hash for the translation of the admin1 name in a
 # standardized format
 id_admin1 <- function(vect, extractor, hash) {
-  vect %>%
-    split_event(.) %>% map(extractor) %>% unlist() %>%
-    strsplit(";") %>% map(str_extract, ".*(?=(\\(.+\\)))|.*") %>%
-    map(strsplit, ", ") %>% map(unlist) %>% map(keep, is_notnumeric) %>%
-    map(translate, hash) %>% map(as.list)
+  lst <- lapply(split_event(vect), "[", extractor)
+  lst <- strsplit(unlist(lst), ";")
+  lst <- lapply(lst, function(x) {
+    sel <- regexpr("[.*(?=(\\(.+\\)))|.*]", x)
+    if (any(grepl("-1", sel)))
+      sel <- replace(sel, grep("-1", sel), max(nchar(x)) + 1)
+    substr(x, 1, sel - 1)
+  })
+  lst <- lapply(lst, function(x) unlist(strsplit(x, ", ")))
+  admin1 <- lst
+  admin1 <- lapply(admin1, function(x) x[which(!grepl("In ", x))])
+  admin1 <- lapply(admin1, translate_v, hash)
 }
 
 # Function to identify the admin2s name and return a vector of character,
@@ -88,16 +87,21 @@ id_admin2 <- function(vect, extractor, hash_p, hash_d) {
   lst <- strsplit(unlist(lst), ";|[[:digit:]],")
   lst <- unlist(lst)
   lst <- lst[which(lst != "" & !grepl("In ", lst))]
-  lst <- data.frame(admin1 = lst)
+  lst <- data.frame(admin1 = lst, stringsAsFactors = FALSE)
 
-  admin2 <- str_extract(lst$admin1, "\\(.+\\)")
+  sel <- regexec("\\(.+\\)", lst$admin1)
+  sel <- replace(sel, grep(-1, sel), max(nchar(lst$admin1)))
+
+  admin2 <- substr(lst$admin1, sel, max(nchar(lst$admin1)))
   admin2 <- gsub("\\(|\\)", "", admin2)
   admin2 <- strsplit(admin2, ", ")
-  admin2 <- lapply(admin2, function(x) translate(x, hash_d))
+  admin2 <- lapply(admin2, function(x) translate_v(x, hash_d))
+  test <- grepl(0, sapply(admin2, length))
+  if (any(test)) admin2[test] <- NA
 
-  admin1 <- str_extract(lst$admin1, ".*(?=(\\(.+\\)))|.*")
+  admin1 <- substr(lst$admin1, 1, unlist(sel) - 1)
   admin1 <- gsub(" in ", "", admin1)
-  admin1 <- lapply(admin1, function(x) translate(x, hash_p))
+  admin1 <- lapply(admin1, function(x) translate_v(x, hash_p))
   admin1 <- rep(admin1, lapply(admin2, length))
 
   df <- data.frame(admin1 = unlist(admin1), admin2 = unlist(admin2))
@@ -113,23 +117,19 @@ id_admin2 <- function(vect, extractor, hash_p, hash_d) {
 # 'd.after' : name of the admin2s concerned by the event (only for complex event)
 make_history <-  function(file, hash, d.hash) {
 
-  hist_list <- read.delim(file, header = FALSE)
+  df <- read.delim(file, header = FALSE)
+  df[["year"]] <- id_date(df$V1)
+  df[["event"]] <- id_event(df$V1)
+  df[["before"]] <- id_admin1(df$V1, 1, hash)
+  df[["after"]] <- id_admin1(df$V1, 2, hash)
 
-  df <- mutate(hist_list,
-               year = id_date(V1),
-               event = id_event(V1),
-               before = id_admin1(V1, 1, hash),
-               after = id_admin1(V1, 2, hash))
-
-  if (any(df$event %>% str_detect("complex"))) {
-    df %<>% mutate(
-      d.before = id_admin2(V1, 1, hash, d.hash),
-      d.after = id_admin2(V1, 2, hash, d.hash))
+  if (any(grepl("complex", df$event))) {
+    df[["d.before"]] <- id_admin2(df$V1, 1, hash, d.hash)
+    df[["d.after"]] <- id_admin2(df$V1, 2, hash, d.hash)
   }
 
-  df %>%
-    select(-V1) %>%
-    transpose(.)
+  df <- df[, - which(names(df) == "V1")]
+  lapply(seq_len(nrow(df)), function(x) as.list(unlist(df[x,], FALSE)))
 }
 
 # Data -------------------------------------------------------------------------
