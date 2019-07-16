@@ -157,7 +157,6 @@ add_dictionary <- function(transl, origin = NULL, hash) {
   dictionary[!is.na(dictionary)]
 }
 
-
 # FOR LAOS ---------------------------------------------------------------------
 
 la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds")
