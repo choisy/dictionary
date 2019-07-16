@@ -3,7 +3,7 @@ library(magrittr) # for "%>%", "%<>%"
 
 # INFORMATION ------------------------------------------------------------------
 
-# We use the name of the province given by GADM without accent or special
+# We use the name of the admin1 given by GADM without accent or special
 # character as translation.
 # Source : gadm: https://gadm.org
 
@@ -14,7 +14,7 @@ library(magrittr) # for "%>%", "%<>%"
 # FUNCTIONS --------------------------------------------------------------------
 
 # Read geonames country files, add the column names and mutate the column
-# containing the province names in character
+# containing the admin1 names in character
 read_geonames <- function(file) {
 
   geo_df <- read.delim(file, header = FALSE)
@@ -88,9 +88,9 @@ alternate_name <- function(df, colnames, sep) {
     c(gsub("Khoueng | Prefecture| Province|Changwat |Tinh |Thanh Pho ",
            "", .))
 
-  # In Cambodia, the Kandal province surround Phnom Penh, that's why it
-  # is in the list of alternative names for this province but it can bring
-  # mistake in our translation as Phnom Penh is also a province in Cambodia.
+  # In Cambodia, the Kandal admin1 surround Phnom Penh, that's why it
+  # is in the list of alternative names for this admin1 but it can bring
+  # mistake in our translation as Phnom Penh is also a admin1 in Cambodia.
   if (is_in("asciiname", colnames)) {
     if (df$asciiname == "Kandal") {
       original_name %<>% grep("Phnom Penh", ., value = TRUE, invert = TRUE)
@@ -110,7 +110,7 @@ alternate_name <- function(df, colnames, sep) {
 # Extract also all the variation of each name in others columns (names_var, sep
 # parameters), and compile all the translation for each name in a named vector.
 # To add value to an existing dictionary (as named vector), used the 'hash'
-# parameters, it will make sure the province names are consistent and add new
+# parameters, it will make sure the admin1 names are consistent and add new
 # value to hash.
 # Takes a data frame (df), a vector of the column names containing
 # the different names (names_transl, names_var) and the character used as
@@ -131,7 +131,7 @@ create_dictionary <- function(df, names_transl, names_var,
     }
 
 
-    # Compile different versions of the province name
+    # Compile different versions of the admin1 name
     original_name <- c(alternate_name(df[i, ],
                                       colnames = names_var,
                                       sep = sep),
@@ -157,7 +157,7 @@ create_dictionary <- function(df, names_transl, names_var,
 # If the parameters 'origin' is NULL, it adds new translation (transl) to a
 # dictionary and different version of this translation as origin.
 # To add to an existing dictionary (as named vector), 'hash' parameters, will
-# make sure the province names are consistent and add new value in the named
+# make sure the admin1 names are consistent and add new value in the named
 # vector 'hash'.
 add_dictionary <- function(transl, origin = NULL, hash) {
 
@@ -170,16 +170,16 @@ add_dictionary <- function(transl, origin = NULL, hash) {
   for (i in seq_along(transl)) {
     if (is.null(origin)) {
       transl_prov <- transl[i] %>% stringi::stri_escape_unicode()
-      province_name <- transl[i] %>% vect_version()
+      admin1_name <- transl[i] %>% vect_version()
     } else {
       transl_prov <- transl[i] %>% stringi::stri_escape_unicode() %>% hash[.]
-      province_name <- origin[i] %>% vect_version()
+      admin1_name <- origin[i] %>% vect_version()
     }
 
 
     dictionary <- c(dictionary,
-                    setNames(rep(transl_prov, length(province_name)),
-                             province_name))
+                    setNames(rep(transl_prov, length(admin1_name)),
+                             admin1_name))
   }
 
   dictionary <- c(hash, dictionary)
@@ -190,7 +190,7 @@ add_dictionary <- function(transl, origin = NULL, hash) {
 
 # FOR LAOS ---------------------------------------------------------------------
 
-la_province <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
+la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
   create_dictionary(names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                     sep = "\\|") %>%
@@ -228,7 +228,7 @@ la_province <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
     hash = .)
 
 
-la_district <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds") %>%
+la_admin2 <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds") %>%
   create_dictionary(names_transl = "NAME_2",
                     names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
                     sep = "\\|") %>%
@@ -238,7 +238,7 @@ la_district <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds") %>%
 
 # FOR THAILAND -----------------------------------------------------------------
 
-th_province <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds") %>%
+th_admin1 <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds") %>%
   create_dictionary(names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                     sep = "\\|") %>%
@@ -259,7 +259,7 @@ th_province <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds") %>%
 
 # FOR CAMBODIA -----------------------------------------------------------------
 
-kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
+kh_admin1 <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
   create_dictionary(names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                     sep = "\\|") %>%
@@ -294,7 +294,7 @@ kh_province <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
 
 # FOR VIETNAM ------------------------------------------------------------------
 
-vn_province <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
+vn_admin1 <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
   create_dictionary(names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                     sep = "\\|") %>%
@@ -349,7 +349,7 @@ vn_province <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
     hash = .)
 
-vn_district <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds") %>%
+vn_admin2 <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds") %>%
   create_dictionary(names_transl = "NAME_2",
                     names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
                     sep = "\\|") %>%
@@ -375,7 +375,7 @@ SEA_country <- setNames(c("Cambodia", "Laos", "Thailand",
 
 # South East Asia ISO ----------------------------------------------------------
 
-ISO_province <- create_dictionary(read.csv(
+ISO_admin1 <- create_dictionary(read.csv(
   "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8_epix.csv"),
   names_transl = "Admin1ISO", names_var = c("Admin1Name", "epix",
                                             "Admin1Name_Preferred",
@@ -394,9 +394,9 @@ ISO_country <- create_dictionary(read.csv(
 
 # Writing to disk --------------------------------------------------------------
 
-devtools::use_data(kh_province, la_province, th_province,
-                   vn_province, vn_district, la_district,
-                   SEA_country, ISO_country, ISO_province,
+usethis::use_data(kh_admin1, la_admin1, th_admin1,
+                   vn_admin1, vn_admin2, la_admin2,
+                   SEA_country, ISO_country, ISO_admin1,
                    overwrite = TRUE)
 
 # Remove everything ------------------------------------------------------------

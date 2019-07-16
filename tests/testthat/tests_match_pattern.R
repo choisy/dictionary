@@ -6,23 +6,23 @@ context("`match_pattern`")
 
 test_that("`match_pattern` returns the correct output", {
 
-  df <- tibble(vn_province_year) %>%
-    mutate(year = names(vn_province_year)) %>%
+  df <- tibble(vn_admin1_year) %>%
+    mutate(year = names(vn_admin1_year)) %>%
     tidyr::unnest() %>%
-    rename(province = "vn_province_year")
+    rename(admin1 = "vn_admin1_year")
 
   expect_identical(match_pattern(df %>% filter(year == "1979-1990"),
-                                 "province", vn_province_year),
+                                 "admin1", vn_admin1_year),
                    "1979-1990")
 
   expect_identical(match_pattern(df %>% filter(year == "1990-1991"),
-                                 "province", vn_province_year),
+                                 "admin1", vn_admin1_year),
                    "1990-1991")
 
   expect_identical(match_pattern(df %>% filter(year == "1979-1990") %>% head,
-                                 "province", vn_province_year, strict = FALSE),
+                                 "admin1", vn_admin1_year, strict = FALSE),
                    "1979-1990")
 
   expect_null(match_pattern(df %>% filter(year == "1979-1990") %>% head,
-                            "province", vn_province_year))
+                            "admin1", vn_admin1_year))
 })
