@@ -1,5 +1,5 @@
-library(dplyr) # for "filter", "mutate", "select"
-library(magrittr) # for "%>%", "%<>%"
+library(stringi) # for "stri_trans_general", "stri_trans_totitle",
+# "stri_escape_unicode"
 
 # INFORMATION ------------------------------------------------------------------
 
@@ -16,42 +16,39 @@ library(magrittr) # for "%>%", "%<>%"
 # Read geonames country files, add the column names and mutate the column
 # containing the admin1 names in character
 read_geonames <- function(file) {
-
-  geo_df <- read.delim(file, header = FALSE)
+  geo_df <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
   colnames(geo_df) <- c("geonameid", "name", "asciiname", "alternatenames",
                         "latitude", "longitude", "f_class", "f_code",
                         "country_code", "cc2", "admin1_code", "admin2_code",
                         "admin3_code", "admin4_code", "population", "elevation",
                         "dem", "timezone", "data_modif")
-
-  geo_df %<>% filter(f_code == "ADM1") %>%
-    mutate(name = as.character(name),
-           asciiname = as.character(asciiname),
-           alternatenames = as.character(alternatenames))
+  geo_df <- geo_df[which(geo_df$f_code == "ADM1"), ]
+  geo_df <- transform(geo_df,
+                      name = as.character(name),
+                      asciiname = as.character(asciiname),
+                      alternatenames = as.character(alternatenames))
 }
 
 # Remove the accent, convert the special character to latin and express
 # characters in UNICODE.
 # (Use in  create_dictionary)
 uni_vect <- function(vect) {
-  vect %<>%
-    as.character() %>%
-    mcutils::vn2latin() %>%                   # Convert the special character
-    iconv(., to = "ASCII//TRANSLIT") %>%        # Convert to ASCII to
-    gsub("[^[:alnum:][:space:]-]", "", .) %>%  # remove the accent
-    gsub(" pref", "_pref", .) %>%             # Keep "_prefecture" for Vientiane
-    gsub("GJ", "D", .) %>%                    # (VN) the "Đ" can be written "GJ"
-    gsub("Khoueng | Province|Changwat |Tinh |Thanh Pho |Krong ", "", .)
-    # Remove the spatial definition
+  vect <- as.character(vect)
+  # Convert to ASCII to remove the occent
+  vect <- stringi::stri_trans_general(vect, "latin-ascii")
+  vect <-  gsub("[^[:alnum:][:space:]-]", "", vect) # remove the accent
+  vect <- gsub(" pref", "_pref", vect) # Keep "_prefecture" for Vientiane
+  vect <- gsub("GJ", "D", vect) # (VN) the "Đ" can be written "GJ"
+  gsub("Khoueng | Province|Changwat |Tinh |Thanh Pho |Krong ", "", vect)
 }
 
 # From a character vector, compile different versions of this character vector:
 # express in upper, lower cases or with capital letters at the beginning of each
 # word. (Use in vect_version)
 vect_case <- function(vect) {
-  vect %<>% as.character()
+  vect <- as.character(vect)
   vect_case <- c(vect, tolower(vect), toupper(vect),
-                 stringr::str_to_title(vect))
+                 stringi::stri_trans_totitle(vect))
 }
 
 # From a character vector, compile different versions of this character vector:
@@ -59,17 +56,11 @@ vect_case <- function(vect) {
 # letters at the beginning of each word and expressed it in UNICODE.
 # (Use in  create_dictionary, alternate_name, add_dictionary, add_transl)
 vect_version <- function(vect) {
-
-  vect %<>% as.character()
   vect <- vect_case(vect)
-  vect_space <- vect %>% gsub(" ", "", .) %>% vect_case()
-  vect_ <- vect %>% gsub("_", " ", .) %>% vect_case()
-
-  vect_vers <- c(vect, vect_space, vect_) %>%
-    na.omit() %>%
-    unique() %>%
-    stringi::stri_escape_unicode()
-
+  vect_space <- vect_case(gsub(" ", "", vect))
+  vect_ <- vect_case(gsub("_", " ", vect))
+  vect_vers <- unique(na.omit(c(vect, vect_space, vect_)))
+  vect_vers <- stringi::stri_escape_unicode(vect_vers)
 }
 
 # From a data frame, extract the different names in columns (colnames)
@@ -82,27 +73,25 @@ vect_version <- function(vect) {
 # (Use in create_dictionary)
 alternate_name <- function(df, colnames, sep) {
 
-  original_name <-
-    select(df, one_of(colnames)) %>% unlist() %>% as.character() %>%
-    strsplit(sep) %>% unlist() %>%
-    c(gsub("Khoueng | Prefecture| Province|Changwat |Tinh |Thanh Pho ",
-           "", .))
+  ori_name <- unlist(df[, colnames, drop = TRUE])
+  ori_name <- unlist(strsplit(as.character(ori_name), sep))
+  ori_name <-  c(ori_name, gsub(
+    "Khoueng | Prefecture| Province|Changwat |Tinh |Thanh Pho ", "", ori_name))
 
   # In Cambodia, the Kandal admin1 surround Phnom Penh, that's why it
   # is in the list of alternative names for this admin1 but it can bring
   # mistake in our translation as Phnom Penh is also a admin1 in Cambodia.
-  if (is_in("asciiname", colnames)) {
+  if (any(grepl("asciiname", colnames))) {
     if (df$asciiname == "Kandal") {
-      original_name %<>% grep("Phnom Penh", ., value = TRUE, invert = TRUE)
+      ori_name <-  grep("Phnom Penh", ori_name, value = TRUE, invert = TRUE)
     }
     # Same in thailand with bangkok and Phra Nakhon Si Ayutthaya, closed to each
     # other
     if (df$asciiname == "Phra Nakhon Si Ayutthaya") {
-      original_name %<>% grep("Bangkok", ., value = TRUE, invert = TRUE)
+      ori_name <-  grep("Bangkok", ori_name, value = TRUE, invert = TRUE)
     }
   }
-
-  original_name %<>% vect_version()
+  vect_version(ori_name)
 }
 
 # From a data frame (df), extract the name in one column (names_transl) remove
@@ -117,37 +106,22 @@ alternate_name <- function(df, colnames, sep) {
 # separator between the different names (sep) as input.
 create_dictionary <- function(df, names_transl, names_var,
                               sep = ";", hash = NULL) {
-
   dictionary <- NULL          # create an empty object
-
   for (i in seq_along(df[, 1])) {
-
     # Name in latin
-    if (is.null(hash)) {
-      transl <- df %>% select(names_transl) %>% .[i, ] %>% uni_vect()
-    } else {
-      transl <- df %>% select(names_transl) %>% .[i, ] %>%
-        uni_vect() %>% hash[.]
-    }
-
-
+    transl <- uni_vect(df[i, names_transl])
+    if (!is.null(hash)) transl <- hash[transl]
     # Compile different versions of the admin1 name
-    original_name <- c(alternate_name(df[i, ],
-                                      colnames = names_var,
-                                      sep = sep),
-                       transl %>% vect_version)
-
+    original_name <- c(alternate_name(df[i, ], colnames = names_var, sep = sep),
+                       vect_version(transl))
     # Create a named vector
-    dictionary <- c(dictionary,
-                    setNames(rep(transl, length(original_name)),
-                             original_name))
+    dictionary <- c(dictionary, setNames(rep(transl, length(original_name)),
+                                         original_name))
   }
+  if (!is.null(hash)) dictionary <- c(hash, dictionary)
 
-  if (is.null(hash) == FALSE) dictionary <- c(hash, dictionary)
-
-  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)] %>%
-    .[!is.na(.)]
-
+  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)]
+  dictionary[!is.na(dictionary)]
 }
 
 # Function to add new value to a dictionary (named vector _ 'hash').
@@ -166,40 +140,34 @@ add_dictionary <- function(transl, origin = NULL, hash) {
   }
 
   dictionary <- NULL
-
   for (i in seq_along(transl)) {
     if (is.null(origin)) {
-      transl_prov <- transl[i] %>% stringi::stri_escape_unicode()
-      admin1_name <- transl[i] %>% vect_version()
+      transl_prov <- stringi::stri_escape_unicode(transl[i])
+      admin1_name <- vect_version(transl[i])
     } else {
-      transl_prov <- transl[i] %>% stringi::stri_escape_unicode() %>% hash[.]
-      admin1_name <- origin[i] %>% vect_version()
+      transl_prov <- hash[stringi::stri_escape_unicode(transl[i])]
+      admin1_name <- vect_version(origin[i])
     }
-
-
-    dictionary <- c(dictionary,
-                    setNames(rep(transl_prov, length(admin1_name)),
-                             admin1_name))
+    dictionary <- c(dictionary, setNames(rep(transl_prov, length(admin1_name)),
+                                         admin1_name))
   }
 
   dictionary <- c(hash, dictionary)
-  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)] %>%
-    .[!is.na(.)]
+  dictionary <- dictionary[which(duplicated(names(dictionary)) == FALSE)]
+  dictionary[!is.na(dictionary)]
 }
-
 
 # FOR LAOS ---------------------------------------------------------------------
 
-la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_1",
-                    names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
-                    sep = "\\|") %>%
-  create_dictionary(df = read_geonames("data-raw/geonames_data/LA.txt"),
-                    names_transl = "asciiname",
-                    names_var = c("name", "asciiname", "alternatenames"),
-                    sep = ",",
-                    hash = .) %>%
-  add_dictionary(
+la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds")
+la_admin1 <- create_dictionary(la_admin1, names_transl = "NAME_1",
+                    names_var = c("NAME_1", "VARNAME_1", "HASC_1"), sep = "\\|")
+la_admin1 <- create_dictionary(
+  df = read_geonames("data-raw/geonames_data/LA.txt"),
+  names_transl = "asciiname",
+  names_var = c("name", "asciiname", "alternatenames"), sep = ",",
+  hash = la_admin1)
+la_admin1 <- add_dictionary(
     transl = c("Champasak", "Houaphan", "Khammouan", "Phongsali",
              "Xiangkhoang", "Xaisomboun", "Xaisomboun",
              "Xaisomboun", "Xaisomboun",
@@ -219,59 +187,57 @@ la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds") %>%
                "km", "svk", "srv", "sk", "cps",
                "atp", "att", "The Capital", "Special zone",
                "The Capital City", "Vientiane Capital",
-               "Vientiane M", "Vientiane P", "vientiane city"), .) %>%
-  create_dictionary(df = read.csv(
-    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
-      filter(CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"),
-    names_transl = "Admin1Name_Preferred",
+               "Vientiane M", "Vientiane P", "vientiane city"),
+    hash = la_admin1)
+df <- read.csv("data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv",
+               stringsAsFactors = FALSE)
+df <- df[which(df$CountryName == "LAO PEOPLE'S DEMOCRATIC REPUBLIC"), ]
+la_admin1 <- create_dictionary(df =  df, names_transl = "Admin1Name_Preferred",
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
-    hash = .)
+    hash = la_admin1)
 
-
-la_admin2 <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_2",
-                    names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
-                    sep = "\\|") %>%
-  add_dictionary(
-    transl = c("Longsane", "Thathom"),
-    origin = c("Longsan", "Thathon"), .)
+la_admin2 <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds")
+la_admin2 <- create_dictionary(la_admin2, names_transl = "NAME_2",
+                               names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
+                               sep = "\\|")
+la_admin2 <- add_dictionary(transl = c("Longsane", "Thathom"),
+                            origin = c("Longsan", "Thathon"), la_admin2)
 
 # FOR THAILAND -----------------------------------------------------------------
 
-th_admin1 <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_1",
-                    names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
-                    sep = "\\|") %>%
-  create_dictionary(df = read_geonames("data-raw/geonames_data/TH.txt"),
-                    names_transl = "asciiname",
-                    names_var = c("name", "asciiname", "alternatenames"),
-                    sep = ",",
-                    hash = .) %>%
-  add_dictionary(transl = c("Prathum Thani", "Phra Nakhon", "Thon Buri"),
-                 hash = .)  %>%
-  create_dictionary(df = read.csv(
-    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
-      filter(CountryName == "THAILAND"),
-    names_transl = "Admin1Name_Preferred",
+th_admin1 <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds")
+th_admin1 <- create_dictionary(th_admin1, names_transl = "NAME_1",
+                               names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
+                               sep = "\\|")
+th_admin1 <- create_dictionary(
+  df = read_geonames("data-raw/geonames_data/TH.txt"),
+  names_transl = "asciiname",
+  names_var = c("name", "asciiname", "alternatenames"), sep = ",",
+  hash = th_admin1)
+th_admin1 <- add_dictionary(
+  transl = c("Prathum Thani", "Phra Nakhon", "Thon Buri"), hash = th_admin1)
+df <- read.csv("data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv",
+               stringsAsFactors = FALSE)
+df <- df[which(df$CountryName == "THAILAND"), ]
+th_admin1 <- create_dictionary(df = df, names_transl = "Admin1Name_Preferred",
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
-    hash = .)
-
+    hash = th_admin1)
 
 # FOR CAMBODIA -----------------------------------------------------------------
 
-kh_admin1 <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_1",
-                    names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
-                    sep = "\\|") %>%
-  add_dictionary(
-    transl = c("Otdar Mean Chey", "Tbong Khmum"),
-    origin = c("Otar Meanchey", "Tboung Khmum"), .)  %>%
-  create_dictionary(df = read_geonames("data-raw/geonames_data/KH.txt"),
-                    names_transl = "asciiname",
-                    names_var = c("name", "asciiname", "alternatenames"),
-                    sep = ",",
-                    hash = .) %>%
-  add_dictionary(
+kh_admin1 <- readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds")
+kh_admin1 <- create_dictionary(kh_admin1, names_transl = "NAME_1",
+                               names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
+                               sep = "\\|")
+kh_admin1 <- add_dictionary(
+  transl = c("Otdar Mean Chey", "Tbong Khmum"),
+  origin = c("Otar Meanchey", "Tboung Khmum"), hash = kh_admin1)
+kh_admin1 <- create_dictionary(
+  df = read_geonames("data-raw/geonames_data/KH.txt"),
+  names_transl = "asciiname",
+  names_var = c("name", "asciiname", "alternatenames"), sep = ",",
+  hash = kh_admin1)
+kh_admin1 <- add_dictionary(
     transl = c("Banteay Meanchey", "Preah Sihanouk", "Preah Sihanouk",
              "Preah Sihanouk", "Kampong Chhnang", "Otdar Mean Chey",
              "Otdar Mean Chey", "Kampong Chhnang", "Kep",
@@ -283,44 +249,42 @@ kh_admin1 <-  readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds") %>%
                "oddor meanchey", "kompong chhnang", "krong kep",
                "oddar mean chey", "paillin", "phom penh", "siam reap",
                "steung treng", "ŎTDÂR MÉANCHEY", "Ratanak Kiri",
-               "Otdar Meanchey", "Kampong Chhanang"), .) %>%
-  create_dictionary(df = read.csv(
-    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
-      filter(CountryName == "CAMBODIA"),
-    names_transl = "Admin1Name_Preferred",
-    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
-    hash = .)
-
+               "Otdar Meanchey", "Kampong Chhanang"),
+    hash = kh_admin1)
+df <- read.csv( "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv")
+df <- df[which(df$CountryName == "CAMBODIA"), ]
+kh_admin1 <- create_dictionary(
+  df = df, names_transl = "Admin1Name_Preferred",
+  names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
+  hash = kh_admin1)
 
 # FOR VIETNAM ------------------------------------------------------------------
 
-vn_admin1 <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_1",
-                    names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
-                    sep = "\\|") %>%
-  add_dictionary(
-    transl = c("Ba Ria - Vung Tau", "Ho Chi Minh"),
-    origin = c("Ba Ria-Vung Tau", "Ho Chi Minh City"), .) %>%
-  create_dictionary(df = read_geonames("data-raw/geonames_data/VN.txt"),
-                    names_transl = "asciiname",
-                    names_var = c("name", "asciiname", "alternatenames"),
-                    sep = ",",
-                    hash = .) %>%
-  add_dictionary(transl =
-                c("Bac Thai", "Binh Tri Thien", "Cuu Long", "Gia Lai - Kon Tum",
-                  "Ha Bac", "Ha Nam Ninh", "Ha Son Binh", "Ha Tuyen",
-                  "Hai Hung", "Hoang Lien Son", "Minh Hai", "Nghe Tinh",
-                  "Nghia Binh", "Phu Khanh", "Quang Nam - Da Nang", "Song Be",
-                  "Thuan Hai", "Vinh Phu", "Ha Tay", "Nam Ha", "Dack Lak"),
-               hash = .) %>%
-  create_dictionary(df = read.table("data-raw/vietnam/provinces.txt",
-                                    sep = ";", header = TRUE,
-                                    stringsAsFactors = FALSE),
-                    names_transl = "new",
-                    names_var = "old",
-                    hash = .)  %>%
-  add_dictionary(
-    transl = c("Quang Nam - Da Nang", "Thua Thien Hue", "Ho Chi Minh",
+vn_admin1 <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds")
+vn_admin1 <- create_dictionary(vn_admin1, names_transl = "NAME_1",
+                               names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
+                               sep = "\\|")
+vn_admin1 <- add_dictionary(
+  transl = c("Ba Ria - Vung Tau", "Ho Chi Minh"),
+  origin = c("Ba Ria-Vung Tau", "Ho Chi Minh City"), hash = vn_admin1)
+vn_admin1 <- create_dictionary(
+  df = read_geonames("data-raw/geonames_data/VN.txt"),
+  names_transl = "asciiname",
+  names_var = c("name", "asciiname", "alternatenames"), sep = ",",
+  hash = vn_admin1)
+vn_admin1 <- add_dictionary(
+  transl = c("Bac Thai", "Binh Tri Thien", "Cuu Long", "Gia Lai - Kon Tum",
+             "Ha Bac", "Ha Nam Ninh", "Ha Son Binh", "Ha Tuyen", "Hai Hung",
+             "Hoang Lien Son", "Minh Hai", "Nghe Tinh", "Nghia Binh",
+             "Phu Khanh", "Quang Nam - Da Nang", "Song Be", "Thuan Hai",
+             "Vinh Phu", "Ha Tay", "Nam Ha", "Dack Lak"),
+  hash = vn_admin1)
+vn_admin1 <- create_dictionary(
+  df = read.table("data-raw/vietnam/provinces.txt", sep = ";", header = TRUE,
+                  stringsAsFactors = FALSE), names_transl = "new",
+  names_var = "old", hash = vn_admin1)
+vn_admin1 <- add_dictionary(
+  transl = c("Quang Nam - Da Nang", "Thua Thien Hue", "Ho Chi Minh",
              "Ba Ria - Vung Tau", "hanoi", "ha giang", "cao bang",
              "tuyen quang", "lao cai", "lai chau", "son la", "yen bai",
              "hoa binh", "thai nguyen", "lang son", "quang ninh", "bac giang",
@@ -341,56 +305,51 @@ vn_admin1 <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds") %>%
                "am d n ", "binh phu c", "ta  ninh", "binh du n ", "d n  nai",
                "ba ria vun  tau", "h  chi minh", "n  an", "tien ian ",
                "vinh n ", "d n  thap", "an ian ", "kien ian ", "can th ",
-               "hau ian ", "s c tran ", "bac ieu"), .) %>%
-  create_dictionary(df = read.csv(
-    "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv") %>%
-      filter(CountryName == "VIET NAM"),
-    names_transl = "Admin1Name_Preferred",
-    names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
-    hash = .)
+               "hau ian ", "s c tran ", "bac ieu"), hash = vn_admin1)
+df <- read.csv( "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8.csv",
+                stringsAsFactors = FALSE)
+df <- df[which(df$CountryName == "VIET NAM"), ]
+vn_admin1 <- create_dictionary(df, names_transl = "Admin1Name_Preferred",
+                               names_var = c("Admin1Name", "Admin1ISO",
+                                             "Admin1Name_Preferred"),
+                               hash = vn_admin1)
 
-vn_admin2 <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds") %>%
-  create_dictionary(names_transl = "NAME_2",
+vn_admin2 <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds")
+vn_admin2 <- create_dictionary(vn_admin2, names_transl = "NAME_2",
                     names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
-                    sep = "\\|") %>%
-  create_dictionary(df = read.table("data-raw/vietnam/districts.txt",
-                                    sep = ";", header = TRUE,
-                                    stringsAsFactors = FALSE),
-                    names_transl = "new",
-                    names_var = "old",
-                    hash = .)
+                    sep = "\\|")
+vn_admin2 <- create_dictionary(
+  df = read.table("data-raw/vietnam/districts.txt", sep = ";", header = TRUE,
+                  stringsAsFactors = FALSE),
+  names_transl = "new", names_var = "old", hash = vn_admin2)
 
 # Country ----------------------------------------------------------------------
 
-SEA_country <- setNames(c("Cambodia", "Laos", "Thailand",
-             "Vietnam"),
-             c("CAMBODIA", "LAO PEOPLES DEMOCRATIC REPUBLIC ", "THAILAND",
-             "VIET NAM")) %>%
-  create_dictionary(read.csv(
-  "data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
+SEA_country <- setNames(
+  c("Cambodia", "Laos", "Thailand", "Vietnam"),
+  c("CAMBODIA", "LAO PEOPLES DEMOCRATIC REPUBLIC ", "THAILAND", "VIET NAM"))
+SEA_country <- create_dictionary(
+  read.csv("data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
   names_transl = "CountryName_Preferred",
   names_var = c("CountryISO", "CountryName", "CountryName_Preferred"),
-  hash = .)
+  hash = SEA_country)
 
 
 # South East Asia ISO ----------------------------------------------------------
 
-ISO_admin1 <- create_dictionary(read.csv(
-  "data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8_epix.csv"),
-  names_transl = "Admin1ISO", names_var = c("Admin1Name", "epix",
-                                            "Admin1Name_Preferred",
-                                            "Admin1ISO")) %>%
-  add_dictionary(
+ISO_admin1 <- create_dictionary(
+  read.csv("data-raw/Tycho_data/KH_TH_LA_VN_admin1s_utf8_epix.csv"),
+  names_transl = "Admin1ISO",
+  names_var = c("Admin1Name", "epix", "Admin1Name_Preferred", "Admin1ISO"))
+ISO_admin1 <- add_dictionary(
     transl = c("KH-22", "LA-VT", "TH-14"),
-    origin = c("Kep", "Vientiane_prefecture", "Phra Nakhon Si Ayutthaya"), .)
+    origin = c("Kep", "Vientiane_prefecture", "Phra Nakhon Si Ayutthaya"),
+    hash = ISO_admin1)
 
-
-ISO_country <- create_dictionary(read.csv(
-  "data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
-  names_transl = "CountryISO", names_var = c("CountryISO",
-                                            "CountryName",
-                                            "CountryName_Preferred"))
-
+ISO_country <- create_dictionary(
+  read.csv("data-raw/Tycho_data/KH_TH_LA_VN_country_utf8.csv"),
+  names_transl = "CountryISO",
+  names_var = c("CountryISO", "CountryName", "CountryName_Preferred"))
 
 # Writing to disk --------------------------------------------------------------
 
