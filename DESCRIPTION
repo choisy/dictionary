@@ -15,8 +15,8 @@ Description: This package contains a dictionary for Vietnamese, Lao, Thai,
   useful to ensure consistency between different data packages using different
   administrative units names.
 License: MIT + file LICENSE
-URL: https://github.com/choisy/dictionary
-BugReports: https://github.com/choisy/dictionary/issues
+URL: https://github.com/epix-project/dictionary
+BugReports: https://github.com/epix-project/dictionary/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
