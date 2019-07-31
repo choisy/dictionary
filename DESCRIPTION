@@ -28,5 +28,7 @@ Imports:
     stringi
 Suggests:
     knitr,
-    gdpm,
+    imhen,
     testthat
+Remotes:
+    epix-project/imhen
