@@ -1,6 +1,8 @@
 # dictionary
 
 [![Travis build status](https://travis-ci.org/epix-project/dictionary.svg?branch=master)](https://travis-ci.org/epix-project/dictionary)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/epix-project/dictionary?branch=master&svg=true)](https://ci.appveyor.com/project/epix-project/dictionary)
+
 
 Dictionary of admin1, admin2 and admin3 names
 
