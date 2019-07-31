@@ -29,6 +29,7 @@ Imports:
 Suggests:
     knitr,
     imhen,
-    testthat
+    testthat,
+    covr
 Remotes:
     epix-project/imhen
