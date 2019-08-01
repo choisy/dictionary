@@ -46,7 +46,7 @@ tidy_geonames <- function(geo_df) {
 }
 
 # Remove the accent, convert the special character to latin and express
-# characters in UNICODE.
+# characters in ASCII.
 # (Use in  create_dictionary)
 uni_vect <- function(vect) {
   vect <- as.character(vect)
@@ -75,7 +75,8 @@ vect_version <- function(vect) {
   vect <- vect_case(vect)
   vect_space <- vect_case(gsub(" ", "", vect))
   vect_ <- vect_case(gsub("_", " ", vect))
-  vect_vers <- unique(na.omit(c(vect, vect_space, vect_)))
+  ascii_vect <- stringi::stri_trans_general(vect, "latin-ascii")
+  vect_vers <- unique(na.omit(c(vect, vect_space, vect_, ascii_vect)))
   vect_vers <- stringi::stri_escape_unicode(vect_vers)
 }
 
@@ -175,7 +176,8 @@ add_dictionary <- function(transl, origin = NULL, hash) {
 
 # FOR LAOS ---------------------------------------------------------------------
 
-la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds")
+la_admin1 <- as.data.frame(sptools::gadm("Laos", "sf", 1),
+                           stringsAsFactors = FALSE)
 la_admin1 <- create_dictionary(la_admin1, names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"), sep = "\\|")
 la_admin1 <- create_dictionary(
@@ -212,7 +214,8 @@ la_admin1 <- create_dictionary(df =  df, names_transl = "Admin1Name_Preferred",
     names_var = c("Admin1Name", "Admin1Name_Preferred", "Admin1ISO"),
     hash = la_admin1)
 
-la_admin2 <- readRDS("data-raw/gadm_data/gadm36_LAO_2_sf.rds")
+la_admin2 <- as.data.frame(sptools::gadm("Laos", "sf", 2),
+                           stringsAsFactors = FALSE)
 la_admin2 <- create_dictionary(la_admin2, names_transl = "NAME_2",
                                names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
                                sep = "\\|")
@@ -221,7 +224,8 @@ la_admin2 <- add_dictionary(transl = c("Longsane", "Thathom"),
 
 # FOR THAILAND -----------------------------------------------------------------
 
-th_admin1 <- readRDS("data-raw/gadm_data/gadm36_THA_1_sf.rds")
+th_admin1 <- as.data.frame(sptools::gadm("Thailand", "sf", 1),
+                           stringsAsFactors = FALSE)
 th_admin1 <- create_dictionary(th_admin1, names_transl = "NAME_1",
                                names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                                sep = "\\|")
@@ -241,7 +245,8 @@ th_admin1 <- create_dictionary(df = df, names_transl = "Admin1Name_Preferred",
 
 # FOR CAMBODIA -----------------------------------------------------------------
 
-kh_admin1 <- readRDS("data-raw/gadm_data/gadm36_KHM_1_sf.rds")
+kh_admin1 <- as.data.frame(sptools::gadm("Cambodia", "sf", 1),
+                           stringsAsFactors = FALSE)
 kh_admin1 <- create_dictionary(kh_admin1, names_transl = "NAME_1",
                                names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                                sep = "\\|")
@@ -276,7 +281,8 @@ kh_admin1 <- create_dictionary(
 
 # FOR VIETNAM ------------------------------------------------------------------
 
-vn_admin1 <- readRDS("data-raw/gadm_data/gadm36_VNM_1_sf.rds")
+vn_admin1 <- as.data.frame(sptools::gadm("Vietnam", "sf", 1),
+                           stringsAsFactors = FALSE)
 vn_admin1 <- create_dictionary(vn_admin1, names_transl = "NAME_1",
                                names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                                sep = "\\|")
@@ -330,7 +336,8 @@ vn_admin1 <- create_dictionary(df, names_transl = "Admin1Name_Preferred",
                                              "Admin1Name_Preferred"),
                                hash = vn_admin1)
 
-vn_admin2 <- readRDS("data-raw/gadm_data/gadm36_VNM_2_sf.rds")
+vn_admin2 <- as.data.frame(sptools::gadm("Vietnam", "sf", 2),
+                           stringsAsFactors = FALSE)
 vn_admin2 <- create_dictionary(vn_admin2, names_transl = "NAME_2",
                     names_var = c("NAME_2", "VARNAME_2", "HASC_2"),
                     sep = "\\|")
