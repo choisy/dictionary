@@ -11,12 +11,28 @@ library(stringi) # for "stri_trans_general", "stri_trans_totitle",
 # the data by country coming from the geonames website:
 # Source: http://download.geonames.org/export/dump/
 
-# FUNCTIONS --------------------------------------------------------------------
+# FUNCTIONS -------------------------------------------------------------------
 
-# Read geonames country files, add the column names and mutate the column
+# Download geonames files, read the txt file and remove alll the files
+# downloaded
+read_geonames <- function(country) {
+  zipfile <- paste0(country, ".zip")
+  txtfile <- paste0(country, ".txt")
+  download.file(paste0("http://download.geonames.org/export/dump/", country ,
+                       ".zip"), zipfile)
+  if (!(file.exists(paste0(country, ".zip")))) {
+    stop("The file was not downloaded,",
+         " maybe it is a problem of country ISO2 name")
+  }
+  unzip(zipfile)
+  df <- read.delim(txtfile, header = FALSE, stringsAsFactors = FALSE)
+  file.remove(zipfile, "readme.txt", txtfile)
+  df
+}
+
+# Read geonames country output files, add the column names and mutate the column
 # containing the admin1 names in character
-read_geonames <- function(file) {
-  geo_df <- read.delim(file, header = FALSE, stringsAsFactors = FALSE)
+tidy_geonames <- function(geo_df) {
   colnames(geo_df) <- c("geonameid", "name", "asciiname", "alternatenames",
                         "latitude", "longitude", "f_class", "f_code",
                         "country_code", "cc2", "admin1_code", "admin2_code",
@@ -163,7 +179,7 @@ la_admin1 <- readRDS("data-raw/gadm_data/gadm36_LAO_1_sf.rds")
 la_admin1 <- create_dictionary(la_admin1, names_transl = "NAME_1",
                     names_var = c("NAME_1", "VARNAME_1", "HASC_1"), sep = "\\|")
 la_admin1 <- create_dictionary(
-  df = read_geonames("data-raw/geonames_data/LA.txt"),
+  df = tidy_geonames(read_geonames("LA")),
   names_transl = "asciiname",
   names_var = c("name", "asciiname", "alternatenames"), sep = ",",
   hash = la_admin1)
@@ -210,7 +226,7 @@ th_admin1 <- create_dictionary(th_admin1, names_transl = "NAME_1",
                                names_var = c("NAME_1", "VARNAME_1", "HASC_1"),
                                sep = "\\|")
 th_admin1 <- create_dictionary(
-  df = read_geonames("data-raw/geonames_data/TH.txt"),
+  df = tidy_geonames(read_geonames("TH")),
   names_transl = "asciiname",
   names_var = c("name", "asciiname", "alternatenames"), sep = ",",
   hash = th_admin1)
@@ -233,7 +249,7 @@ kh_admin1 <- add_dictionary(
   transl = c("Otdar Mean Chey", "Tbong Khmum"),
   origin = c("Otar Meanchey", "Tboung Khmum"), hash = kh_admin1)
 kh_admin1 <- create_dictionary(
-  df = read_geonames("data-raw/geonames_data/KH.txt"),
+  df = tidy_geonames(read_geonames("KH")),
   names_transl = "asciiname",
   names_var = c("name", "asciiname", "alternatenames"), sep = ",",
   hash = kh_admin1)
@@ -268,7 +284,7 @@ vn_admin1 <- add_dictionary(
   transl = c("Ba Ria - Vung Tau", "Ho Chi Minh"),
   origin = c("Ba Ria-Vung Tau", "Ho Chi Minh City"), hash = vn_admin1)
 vn_admin1 <- create_dictionary(
-  df = read_geonames("data-raw/geonames_data/VN.txt"),
+  df = tidy_geonames(read_geonames("VN")),
   names_transl = "asciiname",
   names_var = c("name", "asciiname", "alternatenames"), sep = ",",
   hash = vn_admin1)
