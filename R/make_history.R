@@ -130,7 +130,8 @@ id_admin2 <- function(vect, extractor, hash_p, hash_d) {
 #' @param d.hash named vector to translate the name of the admin2 geographic
 #'   unit
 #'
-#' @importFrom utils read.delim
+#' @importFrom utils read.delim unzip
+#' @importFrom stats na.omit setNames
 #' @export
 #' @examples
 #' \dontrun{

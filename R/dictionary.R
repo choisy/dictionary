@@ -225,3 +225,7 @@ dictionary <- function(countryname, level, add_dict = NULL, force = FALSE) {
   }
   sort(dict)
 }
+
+## quiets concerns of R CMD check for the values that appear in pipelines
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("name", "asciiname",
+                                                        "alternatenames"))
