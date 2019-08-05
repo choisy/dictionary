@@ -33,11 +33,11 @@ return the name of the slot with the vector without any difference.
 }
 \examples{
 
-# To look at the year of expression of the admin1 in Vietnam from a
-# gdpm data frame (epidemiologic data from Vietnam)
-library(gdpm)
+# To look at the year of expression of the province in Vietnam from the
+# imhen data sets (meteorological data)
+library(imhen)
 
-df <- getid(dengue, from = 1980, to = 1982) # get data for dengue for Vietnam
+df <- imhen::meteo_intagg_2008_2017 # get data for the years 2008-2017
 # Allows to check the spatial expression is corresponding to the year
 match_pattern(df, "province", vn_admin1_year)
 
