@@ -1,4 +1,4 @@
-"old";"new"
+"var_1";"translate"
 "Quận Ba Đình";"Ba Dinh"
 "Quận Tây Hồ";"Tay Ho"
 "Quận Hoàn Kiếm";"Hoan Kiem"

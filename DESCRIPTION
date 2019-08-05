@@ -25,10 +25,14 @@ Depends:
 VignetteBuilder: knitr
 Imports:
     countrycode,
+    sptools,
     stringi
 Suggests:
     knitr,
-    gdpm,
-    testthat
+    imhen,
+    testthat,
+    covr
 Remotes:
+    epix-project/imhen
     epix-project/sptools
+
