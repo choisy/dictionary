@@ -33,6 +33,6 @@ Suggests:
     testthat,
     covr
 Remotes:
-    epix-project/imhen
+    epix-project/imhen,
     epix-project/sptools
 
