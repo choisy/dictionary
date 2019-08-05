@@ -1,6 +1,10 @@
 ---
 title: "Use dictionary"
 date: "`r Sys.Date()`"
+knit: (function(inputFile, encoding, output_dir) { 
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_dir=paste0(dirname(normalizePath(getwd())), "/inst/doc"))})
 output:
   html_document:
     theme: cerulean
