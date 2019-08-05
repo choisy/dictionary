@@ -25,6 +25,7 @@ Depends:
 VignetteBuilder: knitr
 Imports:
     countrycode,
+    sptools,
     stringi
 Suggests:
     knitr,

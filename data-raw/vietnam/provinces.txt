@@ -1,4 +1,4 @@
-old;new
+var_1;translate
 BÄƒc Cáº¡n;Bac Kan
 BÄƒc Giang;Bac Giang
 BÄƒc Ninh;Bac Ninh
