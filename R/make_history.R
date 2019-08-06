@@ -1,10 +1,3 @@
-# Function to recognize if a vector contains digit, returns TRUE for each object
-# of the vector containing no numerics.
-is_notnumeric <- function(vect) {
-  grepl("[[:digit:]]", vect, ignore.case = TRUE) == FALSE
-}
-
-# ------------------------------------------------------------------------------
 # Splits the vector by `EVENT`
 split_event <- function(vect){
   vect <- gsub("splits", "split", vect)

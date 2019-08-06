@@ -30,9 +30,8 @@ Imports:
 Suggests:
     knitr,
     imhen,
-    testthat,
+    testthat (>= 2.1.0),
     covr
 Remotes:
     epix-project/imhen,
     epix-project/sptools
-

@@ -8,10 +8,6 @@ read_geonames <- function(country) {
   txtfile <- paste0(country, ".txt")
   download.file(paste0("http://download.geonames.org/export/dump/", country ,
                        ".zip"), zipfile)
-  if (!(file.exists(paste0(country, ".zip")))) {
-    stop("The file was not downloaded,",
-         " maybe it is a problem of country ISO2 name")
-  }
   unzip(zipfile)
   df <- read.delim(txtfile, header = FALSE, stringsAsFactors = FALSE)
   file.remove(zipfile, "readme.txt", txtfile)
